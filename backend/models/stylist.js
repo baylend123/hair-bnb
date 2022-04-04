@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Stylist.hasMany(models.Booking, {foreignKey : 'stylistId'})
+      Stylist.hasMany(models.Message, {foreignKey : 'stylistId'})
+      Stylist.hasMany(models.Tag, {foreignKey : 'stylistId'})
     }
   }
   Stylist.init({

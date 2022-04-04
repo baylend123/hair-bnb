@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Stylist.hasMany(models.Booking, {foreignKey : 'stylistId'})
       Stylist.hasMany(models.Message, {foreignKey : 'stylistId'})
-      Stylist.hasMany(models.Tag, {foreignKey : 'stylistId'})
+      Stylist.hasMany(Tag, {foreignKey : 'stylistId'})
     }
   }
   Stylist.init({
@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     hashedPassword: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
+    address: DataTypes.STRING,
     venue: DataTypes.BOOLEAN
   }, {
     sequelize,

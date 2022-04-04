@@ -40,17 +40,23 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      address: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       venue: {
         allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       }
     });
   },

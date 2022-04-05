@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      stylisId: {
+      stylistId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

@@ -1,9 +1,10 @@
 {
   "development": {
     "username": "paullym",
-    "password": "Baylendoss12",
+    "password": "baylendoss12",
     "database": "hairbnb",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": "5000"
   }
 }

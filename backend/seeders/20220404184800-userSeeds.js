@@ -22,7 +22,18 @@ module.exports = {
          hashedPassword: bcrypt.hashSync('password'),
          city: 'Dallas',
          state: 'California'
-       }], {});
+       },
+       {
+        firstName: 'No',
+        lastName: 'Money',
+        email: 'nm@email.com',
+        bio: 'has no money and no hair',
+        currentHairStyle: 'sick ass head',
+        profilePhoto: 'link',
+        hashedPassword: bcrypt.hashSync('password'),
+        city: 'San Diego',
+        state: 'Texas'
+      }], {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -35,7 +46,7 @@ module.exports = {
 
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      email: { [Op.in]: ['bm@email.com'] }
+      email: { [Op.in]: ['bm@email.com', 'nm@email.com'] }
     }, {});
 
   }

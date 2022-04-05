@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Message.init({
     userId: DataTypes.INTEGER,
-    stylisId: DataTypes.INTEGER,
+    stylistId: DataTypes.INTEGER,
     message: DataTypes.TEXT
   }, {
     sequelize,

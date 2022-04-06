@@ -24,6 +24,7 @@ router.get('/set-token-cookie', asyncHandler(async (req, res) => {
   })
   setTokenCookie(res, user);
   return res.json({ user });
+  
 }));
 
 router.get('/query-sandbox', asyncHandler(async (req, res) => {

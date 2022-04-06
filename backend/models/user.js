@@ -25,28 +25,29 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     validatePassword(password) {
-      bcrypt.compareSync(password, this.hashedPassword.toString())
+      return bcrypt.compareSync(password, this.hashedPassword.toString())
     }
 
-    async getCurrentUserById(id) {
-      return await User.scope('currentUser').findByPk(id);
+    static async getCurrentUserById(id) {
+      return await User.findByPk(id);
      };
 
-    async login({ credential, password }) {
+    static async login({ credential, password }) {
       const { Op } = require('sequelize');
-      const user = await User.scope('loginUser').findOne({
+      const user = await User.findOne({
         where: {
           [Op.or]: {
             email: credential,
           },
         },
       });
+      console.log(user)
       if (user && user.validatePassword(password)) {
-        return await User.scope('currentUser').findByPk(user.id);
+        return await User.findByPk(user.id);
       }
     };
 
-    async signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state }) {
+    static async signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         firstName,
@@ -59,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         city,
         state
       });
-      return await User.scope('currentUser').findByPk(user.id);
+      return await User.findByPk(user.id);
     };
 
   }

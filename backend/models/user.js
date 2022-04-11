@@ -32,16 +32,15 @@ module.exports = (sequelize, DataTypes) => {
       return await User.findByPk(id);
      };
 
-    static async login({ credential, password }) {
+    static async login({ email, password }) {
       const { Op } = require('sequelize');
       const user = await User.findOne({
         where: {
           [Op.or]: {
-            email: credential,
+            email: email,
           },
         },
       });
-      console.log(user)
       if (user && user.validatePassword(password)) {
         return await User.findByPk(user.id);
       }

@@ -1,11 +1,12 @@
 import './App.css';
+import {useState} from 'react'
+import { csrfFetch } from './store/csrf';
+import Splash from './components/SplashComponent';
 
 function App() {
   return (
-    <div className="App">
-      Coin-Flip
-    </div>
-  );
+    <Splash />
+  )
 }
 
 export default App;

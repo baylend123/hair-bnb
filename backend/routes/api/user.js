@@ -21,16 +21,17 @@ const validateSignup = [
 
 router.post(
     '',
-    validateSignup,
+    // validateSignup,
     asyncHandler(async (req, res) => {
       const { firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state } = req.body;
-      const user = await User.signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state });
+      console.log(firstName, lastName, req.files)
+      // const user = await User.signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state });
 
-      await setTokenCookie(res, user);
+      // await setTokenCookie(res, user);
 
-      return res.json({
-        user,
-      });
+      // return res.json({
+      //   user,
+      // });
     }),
   );
 

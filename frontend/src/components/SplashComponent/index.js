@@ -1,5 +1,6 @@
 import React from "react";
 import LoginComponent from "../LoginComponent";
+import SignupComponent from "../SignupComponent";
 
 function Splash (){
     return (
@@ -12,6 +13,9 @@ function Splash (){
             </div>
             <div>
                 <LoginComponent />
+            </div>
+            <div>
+                <SignupComponent />
             </div>
         </div>
     )

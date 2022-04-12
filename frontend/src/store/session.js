@@ -28,9 +28,9 @@ export const restoreUser = () => async dispatch => {
 export const login = (user) => async dispatch => {
     const {email, password} = user
     const response  = await csrfFetch('/api/session', {
-        method : 'POST', 
+        method : 'POST',
         body : JSON.stringify({
-            email, 
+            email,
             password
         })
     })
@@ -40,27 +40,30 @@ export const login = (user) => async dispatch => {
 }
 
 export const signup = (user) => async (dispatch) => {
-
     const {firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state } = user;
-    const response = await csrfFetch('/api/users', {
+    const formData = new FormData();
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('email', email);
+    formData.append('bio', bio);
+    formData.append('currentHairStyle', currentHairStyle);
+    formData.append('profilePhoto', profilePhoto);
+    formData.append('password', password);
+    formData.append('city', city);
+    formData.append('state', state);
+    for(let v of formData) {
+        console.log(v)
+    }
+    const response = await csrfFetch('/api/user', {
       method: 'POST',
-      body: JSON.stringify({
-        firstName, 
-        lastName, 
-        email, 
-        bio, 
-        currentHairStyle, 
-        profilePhoto, 
-        password, 
-        city, 
-        state
-      }),
+      headers: { 'Content-Type': 'multipart/form-data'},
+      body: formData,
     });
-    const data = await response.json();
-    dispatch(setUser(data.user));
-    return response;
+    // const data = await response.json();
+    // dispatch(setUser(data.user));
+    // return response;
 };
-  
+
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch('/api/session', {
         method: 'DELETE',
@@ -87,5 +90,5 @@ const sessionReducer = (state = initialState, action) => {
         return state;
     }
   };
-  
+
   export default sessionReducer;

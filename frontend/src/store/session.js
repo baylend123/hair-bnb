@@ -51,9 +51,10 @@ export const signup = (user) => async (dispatch) => {
     formData.append('password', password);
     formData.append('city', city);
     formData.append('state', state);
-    for(let v of formData) {
-        console.log(v)
-    }
+    // for(let v of formData) {
+    //     console.log(v)
+    // }
+    // console.log(formData)
     const response = await csrfFetch('/api/user', {
       method: 'POST',
       headers: { 'Content-Type': 'multipart/form-data'},

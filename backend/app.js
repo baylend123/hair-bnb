@@ -13,7 +13,7 @@ const isProduction = environment === 'production';
 
 const app = express();
 
-// app.use(formData.parse());
+app.use(formData.parse());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

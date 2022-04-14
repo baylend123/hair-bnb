@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
@@ -15,11 +14,12 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: '25ch',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    m: 1
   };
 
 
@@ -80,11 +80,10 @@ function LoginComponent() {
                             autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            sx={{ mt: 2 }}
                             required
                         />
-                        <button type='submit'>
-                            Log In
-                        </button>
+                        <Button sx={{ mt: 2 }} type='submit' variant="contained">Log In</Button>
                     </div>
                 </Box>
             </Modal>

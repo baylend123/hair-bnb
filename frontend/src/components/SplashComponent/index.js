@@ -1,14 +1,21 @@
 import React from "react";
 import { NavBar } from "../NavBarComponent";
+import { Search } from "../SearchComponent";
 import './Splash.css'
-function Splash (){
+function Splash() {
     return (
         <div className="splash">
             <div>
                 <NavBar />
             </div>
+            <div className="search-title">
+                Search for a stylist
+            </div>
             <div>
-                Splash Stuff
+                <Search />
+            </div>
+            <div className="welcome-message">
+                Welcome to hair-bnb
             </div>
         </div>
     )

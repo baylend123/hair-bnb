@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 
 
 const style = {
+    fontFamily: 'Montserrat',
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -47,8 +48,12 @@ function LoginComponent() {
     }
 
     return (
-        <div>
-            <Button onClick={handleOpen}>Log In</Button>
+        
+        <div className="login">
+            
+            <Button sx={{
+                color : 'white'
+            }} onClick={handleOpen}>Log In</Button>
             <Modal
                 open={open}
                 onClose={handleClose}

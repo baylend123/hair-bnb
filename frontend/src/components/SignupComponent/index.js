@@ -65,7 +65,7 @@ function SignupComponent (){
 
     return (
         <div>
-            <Button onClick={handleOpen}>Sign Up</Button>
+            <Button sx={{color : 'white'}} onClick={handleOpen}>Sign Up</Button>
             <Modal
                 open={open}
                 onClose={handleClose}

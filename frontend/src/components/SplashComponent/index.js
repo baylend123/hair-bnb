@@ -1,21 +1,14 @@
 import React from "react";
-import LoginComponent from "../LoginComponent";
-import SignupComponent from "../SignupComponent";
-
+import { NavBar } from "../NavBarComponent";
+import './Splash.css'
 function Splash (){
     return (
-        <div>
+        <div className="splash">
             <div>
-                NavBar
+                <NavBar />
             </div>
             <div>
                 Splash Stuff
-            </div>
-            <div>
-                <LoginComponent />
-            </div>
-            <div>
-                <SignupComponent />
             </div>
         </div>
     )

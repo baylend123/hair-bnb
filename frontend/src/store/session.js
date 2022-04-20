@@ -42,6 +42,7 @@ export const login = (user) => async dispatch => {
 export const signup = (user) => async (dispatch) => {
     const {firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state } = user;
     const formData = new FormData();
+    console.log(user)
     formData.append('firstName', firstName);
     formData.append('lastName', lastName);
     formData.append('email', email);
@@ -54,7 +55,7 @@ export const signup = (user) => async (dispatch) => {
     // for(let v of formData) {
     //     console.log(v)
     // }
-    // console.log(formData)
+    console.log(formData.entries())
     const response = await csrfFetch('/api/user', {
       method: 'POST',
       headers: { 'Content-Type': 'multipart/form-data'},

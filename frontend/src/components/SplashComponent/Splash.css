@@ -18,6 +18,7 @@ body{
     color: white;
 }
 .welcome-message{
+    padding: 10px;
     border-radius: 10px;
     margin-top: 50px;
     background-color: #ff5076;

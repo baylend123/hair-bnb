@@ -58,6 +58,7 @@ function SignupComponent (){
 
     const updateFile = (e) => {
       const file = e.target.files[0];
+      console.log(file.name)
       if(file) {
         setProfilePhoto(file);
       }
@@ -126,7 +127,7 @@ function SignupComponent (){
                             id="outlined-basic"
                             label="Profile Photo"
                             type="file"
-                            value={profilePhoto}
+                            value={''}
                             onChange={updateFile}
                         />
                         <TextField

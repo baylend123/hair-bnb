@@ -15,7 +15,7 @@ function Splash() {
                 <Search />
             </div>
             <div className="welcome-message">
-                Welcome to hair-bnb
+                Welcome to hair-bnb. A place you can find your next favorite hair stylist.
             </div>
         </div>
     )

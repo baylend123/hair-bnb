@@ -8,6 +8,27 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
+// const AWS = require("aws-sdk");
+// import  AWS  from "aws-sdk";
+// import {path as path1} from "path";
+
+// name of your bucket here
+// const NAME_OF_BUCKET = "hair-bnb";
+
+// const multer = require("multer");
+
+//  make sure to set environment variables in production for:
+//  AWS_ACCESS_KEY_ID
+//  AWS_SECRET_ACCESS_KEY
+//  and aws will automatically use those environment variables
+// AWS.config.update({
+//     accessKeyId: "AKIA3VRHUDZNIVZCF6EC",
+//     secretAccessKey: "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"
+// });
+
+// const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+
+
 
 const style = {
     position: 'absolute',
@@ -45,9 +66,29 @@ function SignupComponent (){
     if(sessionUser) return (
         console.log('It works')
     )
-    const signup = (e) => {
+
+    // const singlePublicFileUpload = async (file) => {
+    //     const { name, mimetype, path } = await file;
+    //     console.log(file, "==========")
+    //     // name of the file in your S3 bucket will be the date in ms plus the extension name
+    //     const Key = new Date().getTime().toString() + name;
+    //     console.log(Key);
+    //     const uploadParams = {
+    //       Bucket: NAME_OF_BUCKET,
+    //       Key,
+    //       Body: file,
+    //       ACL: "public-read",
+    //     };
+    //     const result = await s3.upload(uploadParams).promise();
+
+    //     // save the name of the file in your bucket as the key in your database to retrieve for later
+    //     return result.Location;
+    //   };
+
+    const signup = async (e) => {
         e.preventDefault()
-        setErrors([])
+        setErrors([]);
+        // await singlePublicFileUpload(profilePhoto);
         return dispatch(sessionActions.signup({firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, confirmPassword, city, state}))
         .catch(async (res) => {
             console.log(res)

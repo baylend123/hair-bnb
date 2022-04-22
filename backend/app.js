@@ -13,7 +13,7 @@ const isProduction = environment === 'production';
 
 const app = express();
 
-// app.use(formData.parse());
+app.use(formData.parse());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('dev'));
@@ -28,15 +28,15 @@ app.use(helmet({
     contentSecurityPolicy: false
 }));
 
-// app.use(
-//   csurf({
-//     cookie: {
-//       secure: isProduction,
-//       sameSite: isProduction && "Lax",
-//       httpOnly: true,
-//     },
-//   })
-// );
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
+);
 app.use(routes);
 
 app.use((_req, _res, next) => {

@@ -43,26 +43,23 @@ export const signup = (user) => async (dispatch) => {
     const {firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state } = user;
     const formData = new FormData();
     console.log(user)
-    // formData.append('firstName', firstName);
-    // formData.append('lastName', lastName);
-    // formData.append('email', email);
-    // formData.append('bio', bio);
-    // formData.append('currentHairStyle', currentHairStyle);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('email', email);
+    formData.append('bio', bio);
+    formData.append('currentHairStyle', currentHairStyle);
     formData.append('profilePhoto', profilePhoto);
-    // formData.append('password', password);
-    // formData.append('city', city);
-    // formData.append('state', state);
-    // for(let v of formData) {
-    //     console.log(v)
-    // }
-    console.log(formData.entries())
-    const response = await fetch('/api/user', {
+    formData.append('password', password);
+    formData.append('city', city);
+    formData.append('state', state);
+    const response = await csrfFetch('/api/user', {
       method: 'POST',
-      body: JSON.stringify(formData),
+      headers : {'Content-Type' : 'multipart/form-data'},
+      body: formData,
     });
-    // const data = await response.json();
-    // dispatch(setUser(data.user));
-    // return response;
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
 };
 
 export const logout = () => async (dispatch) => {

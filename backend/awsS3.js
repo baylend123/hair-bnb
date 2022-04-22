@@ -1,6 +1,7 @@
 
 const AWS = require("aws-sdk");
 // name of your bucket here
+const fs = require("fs")
 const NAME_OF_BUCKET = "hair-bnb";
 
 const multer = require("multer");
@@ -14,21 +15,40 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 // --------------------------- Public UPLOAD ------------------------
 
-const singlePublicFileUpload = async (file) => {
-  const { originalFilename, mimetype, path } = await file;
-  console.log(file)
-  const path1 = require("path");
-  // name of the file in your S3 bucket will be the date in ms plus the extension name
-  const Key = new Date().getTime().toString() + path1.extname(originalFilename);
-  const uploadParams = {
-    Bucket: NAME_OF_BUCKET,
-    Key,
-    Body: path,
-    ACL: "public-read",
-  };
-  const result = await s3.upload(uploadParams).promise();
+// const singlePublicFileUpload = async (file) => {
+//   const { originalFilename, mimetype, path } = await file;
+//   console.log(file, "==========")
+//   const path1 = require("path");
+//   // name of the file in your S3 bucket will be the date in ms plus the extension name
+//   const Key = new Date().getTime().toString() + path1.extname(originalFilename);
+//   const uploadParams = {
+//     Bucket: NAME_OF_BUCKET,
+//     Key,
+//     Body: file,
+//     ACL: "public-read",
+//   };
+//   const result = await s3.upload(uploadParams).promise();
 
-  // save the name of the file in your bucket as the key in your database to retrieve for later
+//   // save the name of the file in your bucket as the key in your database to retrieve for later
+//   return result.Location;
+// };
+
+const singlePublicFileUpload = async (file) => {
+  // Read content from the file
+  const fileContent = fs.readFileSync(file.path);
+
+  // Setting up S3 upload parameters
+  const params = {
+      Bucket: NAME_OF_BUCKET,
+      Key: file.name, // File name you want to save as in S3
+      Body: fileContent,
+      ContentType: "image/jpeg"
+  };
+
+  // Uploading files to the bucket
+  let url;
+  const result = await s3.upload(params).promise();
+
   return result.Location;
 };
 

@@ -24,16 +24,16 @@ router.post(
   // validateSignup,
   asyncHandler(async (req, res) => {
     const { firstName, lastName, email, bio, currentHairStyle, password, city, state } = req.body;
-    console.log(req.files)
-    const profileImageUrl = await singlePublicFileUpload(req.files.profilePhoto);
-    console.log(profileImageUrl)
-    // const user = await User.signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state });
+    // console.log(req.files, "+++++++++++++")
+    const profilePhoto = await singlePublicFileUpload(req.files.profilePhoto);
+    console.log(profilePhoto, "++++++")
+    const user = await User.signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state });
+    console.log(user, "****************")
+    await setTokenCookie(res, user);
 
-    // await setTokenCookie(res, user);
-
-    // return res.json({
-    //   user,
-    // });
+    return res.json({
+      user,
+    });
   }),
 );
 

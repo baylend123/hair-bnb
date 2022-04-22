@@ -24,7 +24,7 @@ router.post(
   // validateSignup,
   asyncHandler(async (req, res) => {
     const { firstName, lastName, email, bio, currentHairStyle, password, city, state } = req.body;
-    console.log(req)
+    console.log(req.file)
     const profileImageUrl = await singlePublicFileUpload(req.files);
     console.log(profileImageUrl)
     // const user = await User.signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state });

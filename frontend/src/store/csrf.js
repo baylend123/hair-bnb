@@ -11,6 +11,7 @@ export async function csrfFetch(url, options = {}) {
     // 'XSRF-TOKEN' cookie
     if (options.method.toUpperCase() !== "GET") {
       if (options.headers["Content-Type"] === "multipart/form-data") {
+        console.log('here')
         delete options.headers["Content-Type"];
       } else {
         options.headers["Content-Type"] =

@@ -1,13 +1,15 @@
 import React, {useState} from "react";
+
 import * as sessionActions from '../../store/session';
 import {useDispatch, useSelector} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-
+import signupPhoto from '../../images/signupPhoto.jpeg'
+import './signup.css'
 // const AWS = require("aws-sdk");
 // import  AWS  from "aws-sdk";
 // import {path as path1} from "path";
@@ -62,7 +64,7 @@ function SignupComponent (){
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    const navigate = useNavigate()
     if(sessionUser) return (
         console.log('It works')
     )
@@ -108,6 +110,7 @@ function SignupComponent (){
     return (
         <div>
             <Button sx={{color : 'white'}} onClick={handleOpen}>Sign Up</Button>
+            
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -120,10 +123,11 @@ function SignupComponent (){
                     onSubmit={signup}
                     autoComplete="off"
                 >
+                <img src={signupPhoto} alt='haircut'/>
+                <div className="form-container">
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
-                    <div>
                         <TextField
                             id="outlined-basic"
                             label="First Name"
@@ -210,7 +214,12 @@ function SignupComponent (){
                             required
                         />
                         <Button sx={{ mt: 2 }} type='submit' variant="contained">Sign Up</Button>
-                    </div>
+                            <p> or </p>
+                        <Button sx={{ mt: 2 }} onClick={() => {
+                            navigate('/stylist-signup')
+                        }} variant="contained">Become a stylist</Button>
+                        
+                </div>
                 </Box>
             </Modal>
         </div>

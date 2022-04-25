@@ -10,6 +10,10 @@ export default function StylistSignUp(){
                 <img onClick={() => navigate('/')} src={homeicon} alt='home icon'/>
             </div>
             <h1 className="ssup-h1">Lets start with your personal information</h1>
+            <form className="ssup-form">
+                <label htmlFor="fist-name">First name</label>
+                <input type='text' />
+            </form>
         </div>
     )
 }

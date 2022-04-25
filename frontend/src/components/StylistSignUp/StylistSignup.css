@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .stylist-sign-up-container{
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     margin-top : 15%;
@@ -13,8 +15,15 @@
     margin-top: 50px;
     margin-left: 40px;
     color: black;
+    font-family: 'Montserrat', sans-serif;;
 }
 .ssup-image{
     margin-top: 20px;
     margin-left: 20px;
+}
+.ssup-form{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
 }

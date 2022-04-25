@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .App {
-  font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
-
+body{
+  font-family: 'Montserrat', sans-serif;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

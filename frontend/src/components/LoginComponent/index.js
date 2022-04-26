@@ -34,9 +34,7 @@ function LoginComponent() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    if(sessionUser) return (
-        console.log('It works')
-    )
+
     const login = (e) => {
         e.preventDefault()
         setErrors([])
@@ -48,9 +46,9 @@ function LoginComponent() {
     }
 
     return (
-        
+
         <div className="login">
-            
+
             <Button sx={{
                 color : 'white'
             }} onClick={handleOpen}>Log In</Button>

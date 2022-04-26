@@ -1,19 +1,28 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import './StylistSignup.css'
-import homeicon from '../../images/home-icon.png'
-export default function StylistSignUp(){
-    const navigate = useNavigate()
-    return(
-        <div className="stylist-sign-up-container">
-            <div className="ssup-image">
-                <img onClick={() => navigate('/')} src={homeicon} alt='home icon'/>
-            </div>
-            <h1 className="ssup-h1">Lets start with your personal information</h1>
-            <form className="ssup-form">
-                <label htmlFor="fist-name">First name</label>
-                <input type='text' />
-            </form>
-        </div>
+import PageOne from "./Page-1";
+export default function StylistSignUp() {
+    const [page, changePage] = useState(1)
+    const [pageOneState, setPageOneState] = useState({
+        firstName : '',
+        lastName : '', 
+        email : '',
+        password : '',
+        confirmPassword : ''
+    })
+    console.log(pageOneState)
+    return (
+        <>
+        {page === 1 && 
+        <PageOne 
+        pageOneState={pageOneState} 
+        setPageOneState={setPageOneState}
+        changePage={changePage} />
+        }
+        {page === 2 &&
+        <h1 >Hi</h1>
+        }
+        </>
     )
 }

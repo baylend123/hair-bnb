@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .stylist-sign-up-container{
+    background-image: linear-gradient(rgb(235,68,95), rgb(255, 255, 255));
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     margin-top : 15%;
     margin-left: auto;
     margin-right: auto;
-    height: 80vw;
-    width: 80vw;
+    height: 60vw;
+    width: 60vw;
     background-color: rgb(247, 245, 245);
     border: 1px solid white;
+}
+.ssup-label{
+    margin-bottom: 5px;
 }
 .ssup-h1{
     margin-top: 50px;
@@ -21,9 +25,32 @@
     margin-top: 20px;
     margin-left: 20px;
 }
+.ssup-item{
+    display: flex;
+    flex-direction: column;
+}
 .ssup-form{
+    height: 100%;
+    margin-top : 40px;
     margin-left: 50px;
     display: flex;
     flex-direction: column;
+    gap: 7%;
+    margin-left: 15%;
     width: 60%;
+}
+.ssup-next{
+    background-color: rgb(235,68,95);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    bottom: 5%;
+    left: 80%;
+}
+.ssup-input{
+    padding-left: 5px;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 15px;
 }

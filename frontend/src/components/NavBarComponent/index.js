@@ -8,12 +8,12 @@ import './NavBar.css';
 
 
 export function NavBar() {
-    const user = useSelector(state => state?.session?.user)
+    const user = useSelector(state => state?.session?.user);
 
     return (
         <div className="nav-bar-main">
             <div className="nav-bar-left">
-                <div className="logo"> Hair-BnB</div>
+                <NavLink className="logo" to="/">Hair-BnB</NavLink>
             </div>
             <div className="nav-bar-right">
                 { user ? (

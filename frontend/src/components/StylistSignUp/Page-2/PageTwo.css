@@ -1,0 +1,20 @@
+.stylist-sign-up-container{
+    background-image: linear-gradient(rgb(235,68,95), rgb(255, 255, 255));
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top : 15%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 60vw;
+    background-color: rgb(247, 245, 245);
+    border: 1px solid white;
+    padding-bottom: 35px;
+}
+.ssup-h1{
+    margin-top: 50px;
+    margin-left: 40px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import './StylistSignup.css'
 import PageOne from "./Page-1";
+import PageTwo from "./Page-2"
 export default function StylistSignUp() {
     const [page, changePage] = useState(1)
     const [pageOneState, setPageOneState] = useState({
@@ -21,7 +22,7 @@ export default function StylistSignUp() {
         changePage={changePage} />
         }
         {page === 2 &&
-        <h1 >Hi</h1>
+        <PageTwo changePage={changePage}  />
         }
         </>
     )

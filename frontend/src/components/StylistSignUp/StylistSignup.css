@@ -7,10 +7,11 @@
     margin-top : 15%;
     margin-left: auto;
     margin-right: auto;
-    height: 60vw;
+    height: auto;
     width: 60vw;
     background-color: rgb(247, 245, 245);
     border: 1px solid white;
+    padding-bottom: 35px;
 }
 .ssup-label{
     margin-bottom: 5px;

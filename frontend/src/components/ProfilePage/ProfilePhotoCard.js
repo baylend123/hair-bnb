@@ -11,7 +11,7 @@ function ProfilePhotoCard() {
   return (
     <div className="profile-photo-card-container">
       <div className="photo-container">
-        <img className="profile-photo" href={user.profilePhoto} alt="profile" />
+        <img className="profile-photo" src={user.profilePhoto} alt="profile" />
         <button>edit photo</button>
       </div>
       <div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import * as searchActions from '../../store/search';
 
 
@@ -15,17 +15,17 @@ export function Search(){
     const [state, setState] = useState('');
     const [errors, setErrors] = useState('');
 
-    const search = (e) => {
-        e.preventDefault()
-        setErrors([])
-        dispatch(searchActions.getStylists({city, state}))
-        // .catch(async (res) => {
-        //     const data = await res.json()
-        //     if(data && data.errors) setErrors(data.errors)
-        // })
+    // const search = (e) => {
+    //     e.preventDefault()
+    //     setErrors([])
+    //     dispatch(searchActions.getStylists({city, state}))
+    //     .catch(async (res) => {
+    //         const data = await res.json()
+    //         if(data && data.errors) setErrors(data.errors)
+    //     })
 
-        return navigate("/searchList")
-    };
+    //     return navigate(`/search/${city}/${state}`)
+    // };
 
 
     return (
@@ -49,12 +49,18 @@ export function Search(){
                 <option value="California">CA</option>
                 <option value="TX">TX</option>
             </select> */}
-            <button
+            {/* <button
                 className="search-button"><AiOutlineSearch
                 onClick={search}
             />
                 Search
-            </button>
+            </button> */}
+            <NavLink
+                className="search-button"
+                to={`/search/${city}/${state}`}
+            >
+                <AiOutlineSearch/>Search
+            </NavLink>
             </div>
         </div>
     )

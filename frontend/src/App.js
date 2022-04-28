@@ -19,7 +19,7 @@ function App() {
       <Route path='/' element={<Splash />} />
       <Route path='/stylist-signup' element={<StylistSignUp />} />
       <Route path='/profile-page' element={<ProfilePage />} />
-      <Route path='/searchList' element={<SearchListPage />} />
+      <Route path='/search/:city/:state' element={<SearchListPage />} />
     </Routes>
   )
 }

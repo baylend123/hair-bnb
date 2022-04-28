@@ -10,7 +10,7 @@ const searchRouter = require('./search.js')
 
 router.use('/session', sessionRouter);
 router.use('/user', userRouter);
-router.use('./search', searchRouter);
+router.use('/search', searchRouter);
 
 router.post('/test', function (req, res) {
   res.json({ requestBody: req.body });

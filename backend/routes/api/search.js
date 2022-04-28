@@ -4,9 +4,9 @@ const { Stylist } = require('../../models');
 
 const router = express.Router();
 
-//GET list of stylists by input location
-router.get('/', asyncHandler( async (req, res) => {
-  const { city, state } = req.body;
+//GET list of stylists from search params
+router.get('/:city/:state', asyncHandler( async (req, res) => {
+  const { city, state } = req.params;
   console.log(city, state, "+++++++++++++")
   const stylists = await Stylist.findAll({
     where: {

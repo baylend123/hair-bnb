@@ -2,12 +2,19 @@ import React, { useEffect } from "react";
 import { NavBar } from "../NavBarComponent";
 import { Search } from "../SearchComponent";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import StylistCard from "./StylistCard";
+import * as searchActions from '../../store/search';
 
 
 function SearchListPage() {
   const stylists = useSelector((state) => Object.values(state?.search));
+  const { city, state } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    dispatch(searchActions.getStylists(city, state))
+  }, []);
 
 
   return (

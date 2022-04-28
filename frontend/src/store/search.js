@@ -9,15 +9,9 @@ export const setStylists = (stylists) => {
   }
 };
 
-export const getStylists = ({city, state}) => async dispatch => {
+export const getStylists = (city, state) => async dispatch => {
   console.log(city, state, "yooooooooo")
-  const response = await csrfFetch(`/api/search`, {
-    method : 'GET',
-    body : JSON.stringify({
-        city,
-        state
-    })
-  })
+  const response = await csrfFetch(`/api/search/${city}/${state}`)
 
   if(!response.ok){
     throw response;

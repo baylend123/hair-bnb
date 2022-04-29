@@ -50,7 +50,7 @@ function LoginComponent() {
         <div className="login">
 
             <Button sx={{
-                color : 'white'
+                color: 'royalblue'
             }} onClick={handleOpen}>Log In</Button>
             <Modal
                 open={open}

@@ -43,7 +43,7 @@ const style = {
     boxShadow: 24,
     p: 4,
     m: 1
-  };
+};
 
 
 function SignupComponent (){
@@ -107,7 +107,7 @@ function SignupComponent (){
 
     return (
         <div>
-            <Button sx={{color : 'white'}} onClick={handleOpen}>Sign Up</Button>
+            <Button sx={{color: 'royalblue'}} onClick={handleOpen}>Sign Up</Button>
 
             <Modal
                 open={open}

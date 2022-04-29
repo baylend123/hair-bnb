@@ -5,10 +5,12 @@ const { User, Tag } = require('../../models');
 const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const userRouter = require('./user.js');
+const searchRouter = require('./search.js')
 
 
 router.use('/session', sessionRouter);
 router.use('/user', userRouter);
+router.use('/search', searchRouter);
 
 router.post('/test', function (req, res) {
   res.json({ requestBody: req.body });
@@ -22,7 +24,7 @@ router.get('/set-token-cookie', asyncHandler(async (req, res) => {
   })
   setTokenCookie(res, user);
   return res.json({ user });
-  
+
 }));
 
 router.get('/query-sandbox', asyncHandler(async (req, res) => {

@@ -18,3 +18,27 @@
     color: black;
     font-family: 'Montserrat', sans-serif;;
 }
+.ssup-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 200px;
+}
+.ssup-p2-button-container{
+position : relative;
+right : 100px
+}
+.ssup-page-2-container{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.ssup-bio{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    height: 300px;
+    width: 85%;
+    margin-bottom: 10px;
+}

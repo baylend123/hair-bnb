@@ -4,7 +4,8 @@ import { csrfFetch } from './store/csrf';
 import Splash from './components/SplashComponent';
 import StylistSignUp from './components/StylistSignUp'
 import ProfilePage from './components/ProfilePage';
-import SearchListPage from './components/SearchListPage'
+import SearchListPage from './components/SearchListPage';
+import StylistProfilePage from './components/StylistProfilePage';
 
 
 import {
@@ -20,6 +21,7 @@ function App() {
       <Route path='/stylist-signup' element={<StylistSignUp />} />
       <Route path='/profile-page' element={<ProfilePage />} />
       <Route path='/search/:city/:state' element={<SearchListPage />} />
+      <Route path='/stylist/:id' element={<StylistProfilePage />} />
     </Routes>
   )
 }

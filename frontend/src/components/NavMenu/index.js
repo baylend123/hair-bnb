@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -11,8 +14,11 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function AccountMenu() {
+  const user = useSelector(state => state?.session?.user)
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,12 +27,13 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-        <Tooltip title="Account settings">
+        <Typography sx={{ minWidth: 100 }}>Become a Stylist</Typography>
+        <Tooltip title="Account settings" >
           <IconButton
             onClick={handleClick}
             size="small"
@@ -35,7 +42,8 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <MenuIcon />
+            <Avatar sx={{ width: 32, height: 32 }} src={user.profilePhoto} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -77,7 +85,7 @@ export default function AccountMenu() {
         <MenuItem>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => navigate('/profile-page')} >
           <Avatar /> My account
         </MenuItem>
         <Divider />

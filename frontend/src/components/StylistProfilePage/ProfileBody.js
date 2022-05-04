@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import Calendar from "./Calendar";
+
+import "./ProfilePageCss.css"
 
 
 
@@ -22,6 +25,9 @@ function ProfileBody() {
         </div>
         <div className="lives-in">Lives in {stylist.city}, {stylist.state}</div>
         <div className="current-hair">Venu: {stylist.venue}</div>
+        <div className="cal-container">
+          <Calendar />
+        </div>
       </div>
     </div>
   )

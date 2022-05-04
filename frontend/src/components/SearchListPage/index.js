@@ -20,10 +20,10 @@ function SearchListPage() {
   return (
     <div className="splash">
       <div>
-          <NavBar />
+        <NavBar />
       </div>
       <div>
-          <Search />
+        <Search />
       </div>
       <div className="style-list">
         {stylists.map(stylist => {

@@ -7,7 +7,8 @@ const router = express.Router();
 //GET// http://localhost:5000/api/bookings
 router.get('/stylist/:stylistId', asyncHandler( async (req, res) => {
     const { stylistId } = req.params;
-    const bookings = await Event.findAll({
+    console.log("We made it here!!!", stylistId)
+    const bookings = await Booking.findAll({
         where: {
             stylistId,
         }

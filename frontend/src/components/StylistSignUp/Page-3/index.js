@@ -1,7 +1,10 @@
 import {React, useState} from "react";
 import { csrfFetch } from "../../../store/csrf.js";
+import {useNavigate} from 'react-router-dom'
+import homeicon from '../../../images/home-icon.png'
 import './PageThree.css'
 export default function PageThree ({changePage, pageThreeState, setPageThreeState}){
+    const navigate = useNavigate()
     const [upload, setUpload] = useState(false)
     const handleUpload = async (e) => {
         const formData = new FormData();
@@ -19,6 +22,9 @@ export default function PageThree ({changePage, pageThreeState, setPageThreeStat
     }
     return(
         <div className='stylist-sign-up-container'>
+            <div className="ssup-image">
+                <img onClick={() => navigate('/')} src={homeicon} alt='home icon' />
+            </div>
             <h1 className="ssup-h1">Upload more photos if you'd like</h1>
             <div className="ssup-p2-button-container">
                 <div className="ssup-page-3-photo-container">

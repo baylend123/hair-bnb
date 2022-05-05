@@ -1,8 +1,10 @@
 import React from "react";
 import LoginComponent from "../LoginComponent";
 import SignupComponent from "../SignupComponent";
+import NavMenu from "../NavMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+
 
 import Button from '@mui/material/Button';
 import './NavBar.css';
@@ -20,9 +22,10 @@ export function NavBar() {
             </div>
             <div className="nav-bar-right">
                 { user ? (
-                    <Button
-                        sx={{color: 'royalblue'}}
-                        onClick={() => navigate('/profile-page')}>My Profile</Button>
+                    <NavMenu />
+                    // <Button
+                    //     sx={{color: 'royalblue'}}
+                    //     onClick={() => navigate('/profile-page')}>My Profile</Button>
                     // <NavLink className="profile-btn" to="/profile-page">My Profile</NavLink>
                     ) : (
                     <div className="nav-bar-right">

@@ -1,3 +1,6 @@
+//this is required for sequelize to read .env
+require('dotenv').config();
+
 module.exports = {
     environment: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 5001,

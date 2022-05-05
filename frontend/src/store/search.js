@@ -10,7 +10,6 @@ export const setStylists = (stylists) => {
 };
 
 export const getStylists = (city, state) => async dispatch => {
-  console.log(city, state, "yooooooooo")
   const response = await csrfFetch(`/api/search/${city}/${state}`)
 
   if(!response.ok){
@@ -18,10 +17,19 @@ export const getStylists = (city, state) => async dispatch => {
   }
 
   const stylists = await response.json();
-  console.log(stylists, "============")
   dispatch(setStylists(stylists));
 
 };
+
+export const getOneStylist = id => async (dispatch) => {
+  const response = await csrfFetch(`/api/search/stylist/${id}`);
+  if (!response.ok) {
+      throw response;
+  }
+  const stylist = await response.json();
+
+  dispatch(setStylists(stylist));
+}
 
 
 const initialState = {};

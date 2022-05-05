@@ -16,5 +16,14 @@ router.get('/:city/:state', asyncHandler( async (req, res) => {
   res.json(stylists);
 }));
 
+//GET a single stylist by ID
+router.get('/stylist/:id(\\d+)', asyncHandler( async (req, res) =>{
+  const id = Number(req.params.id);
+  const stylist = await Event.findOne({
+      where: { id },
+      include: {all: true}
+  });
+  res.json(stylist);
+}))
 
 module.exports = router;

@@ -18,7 +18,8 @@
     font-family: 'Montserrat', sans-serif;
     display: flex;
     align-items: right;
-    justify-content:right ;
+    justify-content:right;
+    margin-right: 10%;
 }
 .logo {
     border-radius: 10px;

@@ -1,0 +1,9 @@
+body {
+  background-color: white;
+}
+
+.cal-container {
+  width: 350px;
+  padding: 15px;
+  border: solid 1px black ;
+}

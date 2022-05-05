@@ -13,7 +13,8 @@ module.exports = {
     */
 
      await queryInterface.bulkInsert('Bookings', [{
-        date: new Date(),
+        date: "2022-06-12",
+        time: 10.00,
         stylistId: 1,
         userId: 2
      }], {});

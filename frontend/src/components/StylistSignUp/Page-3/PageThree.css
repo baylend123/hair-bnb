@@ -1,0 +1,19 @@
+.ssup-page-3-photo-container{
+    position : relative;
+    left : 120px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.ssup-p3-image{
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+}
+input[type=file]::file-selector-button {
+    background-color: rgb(246, 146, 146);
+    height: 100%;
+    width: 100%;
+}

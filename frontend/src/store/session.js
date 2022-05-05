@@ -62,6 +62,16 @@ export const signup = (user) => async (dispatch) => {
     return response;
 };
 
+export const stylistSignup = (info) => async (dispatch) => {
+    const response = await csrfFetch('/api/user/stylist', {
+        method : 'POST',
+        headers : {'Content-Type' : 'application/json'},
+        body : JSON.stringify(info)
+    })
+    const data = await response.json()
+    dispatch(setUser(data.user))
+}
+
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch('/api/session', {
         method: 'DELETE',

@@ -1,19 +1,66 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {useDispatch } from 'react-redux'
 import './StylistSignup.css'
-import homeicon from '../../images/home-icon.png'
-export default function StylistSignUp(){
-    const navigate = useNavigate()
-    return(
-        <div className="stylist-sign-up-container">
-            <div className="ssup-image">
-                <img onClick={() => navigate('/')} src={homeicon} alt='home icon'/>
-            </div>
-            <h1 className="ssup-h1">Lets start with your personal information</h1>
-            <form className="ssup-form">
-                <label htmlFor="fist-name">First name</label>
-                <input type='text' />
-            </form>
-        </div>
+import PageOne from "./Page-1";
+import PageTwo from "./Page-2"
+import PageThree from "./Page-3";
+import PageFour from "./Page-4";
+import {stylistSignup} from '../../store/session'
+export default function StylistSignUp() {
+    const dispatch = useDispatch()
+    const [page, changePage] = useState(1)
+    const [pageOneState, setPageOneState] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    })
+    const [pageTwoState, setPageTwoState] = useState({
+        profilePhoto: '',
+        bio: ''
+    })
+    const [pageThreeState, setPageThreeState] = useState([])
+    const [pageFourState, setPageFourState] = useState({
+        city: '',
+        state: '',
+        address: '',
+        venue: false,
+    })
+    const handleSubmit = () => {
+        let info = {...pageOneState, ...pageTwoState, photos : pageThreeState, ...pageFourState}
+        dispatch(stylistSignup(info))
+    }
+    return (
+        <>
+            {page === 1 &&
+                <PageOne
+                    pageOneState={pageOneState}
+                    setPageOneState={setPageOneState}
+                    changePage={changePage} />
+            }
+            {page === 2 &&
+                <PageTwo changePage={changePage}
+                    pageTwoState={pageTwoState}
+                    setPageTwoState={setPageTwoState}
+                />
+            }
+            {page === 3 &&
+                <PageThree
+                    changePage={changePage}
+                    pageThreeState={pageThreeState}
+                    setPageThreeState={setPageThreeState}
+                />
+            }
+            {page === 4 &&
+                <PageFour
+                    changePage={changePage}
+                    pageFourState={pageFourState}
+                    setPageFourState={setPageFourState}
+                    handleSubmit={handleSubmit}
+                />
+            }
+        </>
     )
 }

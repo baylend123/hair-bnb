@@ -6,12 +6,12 @@ const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const userRouter = require('./user.js');
 const searchRouter = require('./search.js')
-
+const imageRouter = require('./imageUpload.js')
 
 router.use('/session', sessionRouter);
 router.use('/user', userRouter);
+router.use('/image-upload', imageRouter)
 router.use('/search', searchRouter);
-
 router.post('/test', function (req, res) {
   res.json({ requestBody: req.body });
 });

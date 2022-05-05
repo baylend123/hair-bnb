@@ -22,6 +22,7 @@ module.exports = {
       city: 'Dallas',
       state: 'California',
       address: 'some street',
+      photos : '',
       venue: true
     }], {});
   },

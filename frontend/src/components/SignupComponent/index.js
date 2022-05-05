@@ -43,7 +43,7 @@ const style = {
     boxShadow: 24,
     p: 4,
     m: 1
-  };
+};
 
 
 function SignupComponent (){
@@ -65,9 +65,7 @@ function SignupComponent (){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate()
-    if(sessionUser) return (
-        console.log('It works')
-    )
+
 
     // const singlePublicFileUpload = async (file) => {
     //     const { name, mimetype, path } = await file;
@@ -109,8 +107,8 @@ function SignupComponent (){
 
     return (
         <div>
-            <Button sx={{color : 'white'}} onClick={handleOpen}>Sign Up</Button>
-            
+            <Button sx={{color: 'royalblue'}} onClick={handleOpen}>Sign Up</Button>
+
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -218,7 +216,7 @@ function SignupComponent (){
                         <Button sx={{ mt: 2 }} onClick={() => {
                             navigate('/stylist-signup')
                         }} variant="contained">Become a stylist</Button>
-                        
+
                 </div>
                 </Box>
             </Modal>

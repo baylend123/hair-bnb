@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as sessionActions from '../../store/session'
+import * as sessionActions from '../../store/session';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -34,9 +34,7 @@ function LoginComponent() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    if(sessionUser) return (
-        console.log('It works')
-    )
+
     const login = (e) => {
         e.preventDefault()
         setErrors([])
@@ -48,11 +46,11 @@ function LoginComponent() {
     }
 
     return (
-        
+
         <div className="login">
-            
+
             <Button sx={{
-                color : 'white'
+                color: 'royalblue'
             }} onClick={handleOpen}>Log In</Button>
             <Modal
                 open={open}

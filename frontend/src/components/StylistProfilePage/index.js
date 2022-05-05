@@ -29,7 +29,7 @@ function StylistProfilePage() {
           <ProfilePhotoCard />
         </div>
         <div className="profile-about">
-          {bookings.date}
+          {bookings ? bookings.date : ""}
           <ProfileBody />
         </div>
       </div>

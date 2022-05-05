@@ -35,6 +35,7 @@ export default function Calendar() {
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
+          console.log(newValue)
         }}
         renderInput={(params) => <TextField {...params} />}
       />

@@ -1,11 +1,14 @@
+//this is required for sequelize to read .env
+require('dotenv').config();
+
 module.exports = {
     environment: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 5001,
     db: {
-        username: "paullym",
-        password: "Baylendoss12",
-        database: "hairbnb",
-        host: "localhost",
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
+        host: process.env.DB_HOST,
     },
     jwtConfig: {
         secret: process.env.JWT_SECRET,

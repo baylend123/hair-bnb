@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../models');
+const {Stylist} = require('../../models')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { singlePublicFileUpload } = require('../../awsS3')
@@ -34,5 +35,11 @@ router.post(
     });
   }),
 );
+
+router.post('/stylist', asyncHandler(async (req, res) => {
+  const stylist = await Stylist.signup(req.body)
+  res.json({user : stylist.dataValues})
+
+}))
 
 module.exports = router;

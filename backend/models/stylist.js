@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 const {
   Model
 } = require('sequelize');
@@ -14,6 +15,56 @@ module.exports = (sequelize, DataTypes) => {
       Stylist.hasMany(models.Message, {foreignKey: 'stylistId'})
       Stylist.hasMany(models.Tag, {foreignKey: 'stylistId'})
     }
+    toSafeObject(){
+      const {
+        id, firstName, lastName, email, bio, currentHairStyle, profilePhoto, city, state, address, venue, photos
+      } = this;
+      return {
+        id, firstName, lastName, email, bio, currentHairStyle, profilePhoto, city, state, address, venue, photos
+      };
+    }
+
+    validatePassword(password) {
+      return bcrypt.compareSync(password, this.hashedPassword.toString())
+    }
+
+    static async getCurrentUserById(id) {
+      return await Stylist.findByPk(id);
+     };
+
+    static async login({ email, password }) {
+      const { Op } = require('sequelize');
+      const user = await Stylist.findOne({
+        where: {
+          [Op.or]: {
+            email: email,
+          },
+        },
+      });
+      if (user && user.validatePassword(password)) {
+        return await Stylist.findByPk(user.id);
+      }
+    };
+
+    static async signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state, venue, photos, address }) {
+      const hashedPassword = bcrypt.hashSync(password);
+      const user = await Stylist.create({
+        firstName,
+        lastName,
+        email,
+        bio,
+        currentHairStyle,
+        profilePhoto,
+        hashedPassword,
+        city,
+        state, 
+        venue, 
+        address,
+        photos : JSON.stringify(photos)
+      });
+      return await Stylist.findByPk(user.id);
+    };
+
   }
   Stylist.init({
     firstName: DataTypes.STRING,
@@ -25,7 +76,8 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     address: DataTypes.STRING,
-    venue: DataTypes.BOOLEAN
+    venue: DataTypes.BOOLEAN, 
+    photos: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Stylist',

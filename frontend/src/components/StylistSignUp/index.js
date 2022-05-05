@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import {useDispatch } from 'react-redux'
 import './StylistSignup.css'
 import PageOne from "./Page-1";
 import PageTwo from "./Page-2"
 import PageThree from "./Page-3";
 import PageFour from "./Page-4";
+import {stylistSignup} from '../../store/session'
 export default function StylistSignUp() {
+    const dispatch = useDispatch()
     const [page, changePage] = useState(1)
     const [pageOneState, setPageOneState] = useState({
         firstName: '',
@@ -27,7 +30,7 @@ export default function StylistSignUp() {
     })
     const handleSubmit = () => {
         let info = {...pageOneState, ...pageTwoState, photos : pageThreeState, ...pageFourState}
-        console.log(info)
+        dispatch(stylistSignup(info))
     }
     return (
         <>

@@ -24,13 +24,12 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res) =>{
     });
     res.json(event);
 }))
-//may need to revisit this route
-//POST// http://localhost:5000/api/events
-router.post('/', asyncHandler( async (req, res) => {
-    const {name, details, imageUrl, city, state, address, userId, groupId} = req.body;
-    const event = await Event.create({name, details, imageUrl, city, state, address, userId, groupId});
-    return res.json(event);
-}))
+
+router.post('/new', asyncHandler( async (req, res) => {
+    const {date, time, stylistId, userId} = req.body;
+    const booking = await Booking.create({date, time, stylistId, userId});
+    return res.json(booking);
+}));
 
 router.get('/', asyncHandler( async (req, res) => {
     // const {name, details, img, city, state, address, userId, groupId} = req.body;

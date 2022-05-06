@@ -13,11 +13,11 @@ function ProfilePhotoCard() {
   return (
     <div className="profile-photo-card-container">
       <div className="photo-container">
-        <img className="profile-photo" src={stylist.profilePhoto} alt="profile" />
+        <img className="profile-photo" src={stylist?.profilePhoto} alt="profile" />
         <button>edit photo</button>
       </div>
       <div>
-        {stylist.firstName} confirmed
+        {stylist?.firstName} confirmed
       </div>
     </div>
   )

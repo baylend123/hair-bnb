@@ -19,6 +19,10 @@ export function NavBar() {
             <div className="nav-bar-left">
 
                 <NavLink className="logo" to="/">Hair-BnB</NavLink>
+                <div 
+                        className="inbox-button"
+                        onClick={() => navigate('/inbox')}
+                        >Inbox</div>
             </div>
             <div className="nav-bar-right">
                 { user ? (
@@ -35,7 +39,8 @@ export function NavBar() {
                         <div>
                             <SignupComponent />
                         </div>
-                    </div> )
+                    </div> 
+                    )
                 }
             </div>
         </div>

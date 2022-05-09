@@ -17,7 +17,7 @@ module.exports = {
       lastName: 'Money',
       email: 'bm@email.com',
       bio: 'has money and hair',
-      profilePhoto: 'link',
+      profilePhoto: 'https://hair-bnb.s3.us-west-1.amazonaws.com/1650394127005.jpeg',
       hashedPassword: bcrypt.hashSync('password'),
       city: 'Dallas',
       state: 'California',

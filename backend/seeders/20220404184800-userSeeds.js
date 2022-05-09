@@ -18,7 +18,7 @@ module.exports = {
          email: 'bm@email.com',
          bio: 'has money and hair',
          currentHairStyle: 'sick ass combover',
-         profilePhoto: 'link',
+         profilePhoto: 'https://hair-bnb.s3.us-west-1.amazonaws.com/1650394127005.jpeg',
          hashedPassword: bcrypt.hashSync('password'),
          city: 'Dallas',
          state: 'California'
@@ -29,7 +29,7 @@ module.exports = {
         email: 'nm@email.com',
         bio: 'has no money and no hair',
         currentHairStyle: 'sick ass head',
-        profilePhoto: 'link',
+        profilePhoto: 'https://hair-bnb.s3.us-west-1.amazonaws.com/1650393341772.jpeg',
         hashedPassword: bcrypt.hashSync('password'),
         city: 'San Diego',
         state: 'Texas'

@@ -29,3 +29,33 @@ body{
     height: 250px;
     color: white;
 }
+.splash-image{
+    height: 500px;
+    width: 500px;
+}
+.splash-photo-container{
+    top: 500px;
+    position: relative;
+    height: auto;
+    width: 100vw;
+    display: flex;
+    height: 25vh;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+}
+@media screen and (min-width : 1000px){
+    .splash-photo-container{
+        top: 500px;
+        position: relative;
+        height: auto;
+        width: 100vw;
+        display: flex;
+        height: 25vh;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 20px;
+    }
+       
+}

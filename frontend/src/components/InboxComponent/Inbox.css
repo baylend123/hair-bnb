@@ -1,0 +1,22 @@
+.inbox-main{
+    display: flex;
+}
+.inbox-left-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+.inbox-left{
+    margin-top: 50px;
+    height: 90vh;
+    width: 30vw;
+    border: 1px solid black;
+}
+.inbox-right{
+    margin-top: 50px;
+    height: 90vh;
+    width: 70vw;
+    border: 1px solid black;
+}

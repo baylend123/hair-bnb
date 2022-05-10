@@ -21,10 +21,11 @@ import Button from '@mui/material/Button';
 export default function Calendar() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const stylist = useSelector((state) => state?.search[id]);
   const user = useSelector(state => state?.session.user);
   const [date, setDate] = React.useState(new Date('2022-06-12'));
   const [time, setTime] = React.useState('');
-  console.log(id)
+  console.log(user.firstName, stylist.firstName, "here!!!!")
 
   const timeChange = (event) => {
     setTime(event.target.value);
@@ -37,8 +38,10 @@ export default function Calendar() {
 
   const handleBooking = () => {
     const stylistId = id;
+    const stylistName = stylist.firstName + " " + stylist.lastName;
     const userId = user.id
-    dispatch(bookingActions.createBooking({ date, time, stylistId, userId}))
+    const userName = user.firstName + " " + user.lastName;
+    dispatch(bookingActions.createBooking({ date, time, userName, stylistName, stylistId, userId}))
   }
 
   return (
@@ -61,10 +64,10 @@ export default function Calendar() {
               label="Time"
               onChange={timeChange}
             >
-              <MenuItem value={10.00}>10:00 AM</MenuItem>
-              <MenuItem value={11.00}>11:00 AM</MenuItem>
-              <MenuItem value={12.30}>12:30 PM</MenuItem>
-              <MenuItem value={13.30}>1:30 PM</MenuItem>
+              <MenuItem value={"10:00 AM"}>10:00 AM</MenuItem>
+              <MenuItem value={"11:00 AM"}>11:00 AM</MenuItem>
+              <MenuItem value={"12:30 PM"}>12:30 PM</MenuItem>
+              <MenuItem value={"1:30 PM"}>1:30 PM</MenuItem>
             </Select>
           </FormControl>
         </Box>

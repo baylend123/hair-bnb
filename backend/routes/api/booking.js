@@ -26,8 +26,8 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res) =>{
 }))
 
 router.post('/new', asyncHandler( async (req, res) => {
-    const {date, time, stylistId, userId} = req.body;
-    const booking = await Booking.create({date, time, stylistId, userId});
+    const {date, time, userName, stylistName, stylistId, userId} = req.body;
+    const booking = await Booking.create({date, time, userName, stylistName, stylistId, userId});
     return res.json(booking);
 }));
 

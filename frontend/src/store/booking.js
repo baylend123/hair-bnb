@@ -32,10 +32,10 @@ export const getStylistBookings = (stylistId) => async dispatch => {
 };
 
 export const createBooking = booking => async (dispatch) => {
-  const { date, time, stylistId, userId } = booking;
+  const { date, time, userName, stylistName, stylistId, userId } = booking;
   const response = await csrfFetch('/api/booking/new', {
       method: "POST",
-      body: JSON.stringify({ date, time, stylistId, userId})
+      body: JSON.stringify({ date, time, userName, stylistName, stylistId, userId})
   })
   if(response.ok) {
       const booking = await response.json();

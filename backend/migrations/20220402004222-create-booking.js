@@ -14,7 +14,15 @@ module.exports = {
       },
       time: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.STRING
+      },
+      userName: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      stylistName: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       stylistId: {
         allowNull: false,

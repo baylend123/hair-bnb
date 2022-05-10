@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const SET_BOOKINGS = 'bookings/set';
+const ADD_BOOKING = 'bookings/add';
 
 export const setBookings = (bookings) => {
   return {
@@ -8,6 +9,13 @@ export const setBookings = (bookings) => {
     payload: bookings
   }
 };
+
+export const addBooking = (booking) => {
+  return {
+    type: ADD_BOOKING,
+    payload: booking
+  }
+}
 
 export const getStylistBookings = (stylistId) => async dispatch => {
 
@@ -21,6 +29,19 @@ export const getStylistBookings = (stylistId) => async dispatch => {
   const styleBookings = await response.json();
   dispatch(setBookings(styleBookings));
 
+};
+
+export const createBooking = booking => async (dispatch) => {
+  const { date, time, userName, stylistName, stylistId, userId } = booking;
+  const response = await csrfFetch('/api/booking/new', {
+      method: "POST",
+      body: JSON.stringify({ date, time, userName, stylistName, stylistId, userId})
+  })
+  if(response.ok) {
+      const booking = await response.json();
+      dispatch(addBooking(booking))
+      return booking;
+  }
 };
 
 // export const getOneStylist = id => async (dispatch) => {
@@ -47,6 +68,11 @@ const bookingReducer = (bookings = initialState, action) => {
           [booking.id]: booking
         }
       }, {});
+    case ADD_BOOKING:
+          return {
+              ...bookings,
+              [action.payload.id]: action.payload,
+          }
     default:
       return bookings;
   }

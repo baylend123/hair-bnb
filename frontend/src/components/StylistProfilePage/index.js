@@ -13,7 +13,7 @@ import "./ProfilePageCss.css"
 function StylistProfilePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const bookings = useSelector(state => state?.booking[id])
+  const bookings = useSelector(state => Object.values(state?.booking))
 
   useEffect(()=>{
     dispatch(bookingActions.getStylistBookings(id))
@@ -29,8 +29,8 @@ function StylistProfilePage() {
           <ProfilePhotoCard />
         </div>
         <div className="profile-about">
-          {bookings ? bookings.date : ""}
-          <ProfileBody />
+          {bookings ? bookings.map(booking => booking.date) : ""}
+          <ProfileBody id={id} />
         </div>
       </div>
     </div>

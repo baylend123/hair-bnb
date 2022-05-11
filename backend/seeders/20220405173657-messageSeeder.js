@@ -16,7 +16,13 @@ module.exports = {
       message: 'Yo! I wanna clean cut, homie.',
       stylistId: 1,
       userId: 2
-   }], {});
+   }, 
+    {
+      message: 'Yo! I wanna clean cut, please guy.',
+      stylistId: 2,
+      userId: 2
+    }
+  ], {});
   },
 
   async down (queryInterface, Sequelize) {

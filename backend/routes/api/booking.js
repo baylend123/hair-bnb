@@ -16,14 +16,25 @@ router.get('/stylist/:stylistId', asyncHandler( async (req, res) => {
     res.json(bookings);
 }));
 
-router.get('/:id(\\d+)', asyncHandler( async (req, res) =>{
-    const id = Number(req.params.id);
-    const event = await Event.findOne({
-        where: { id },
-        include: {all: true}
+router.get('/user/:userId', asyncHandler( async (req, res) => {
+    const { userId } = req.params;
+    console.log("We made it here!!!", userId)
+    const bookings = await Booking.findAll({
+        where: {
+            userId,
+        }
     });
-    res.json(event);
-}))
+    res.json(bookings);
+}));
+
+// router.get('/:id(\\d+)', asyncHandler( async (req, res) =>{
+//     const id = Number(req.params.id);
+//     const event = await Event.findOne({
+//         where: { id },
+//         include: {all: true}
+//     });
+//     res.json(event);
+// }))
 
 router.post('/new', asyncHandler( async (req, res) => {
     const {date, time, userName, stylistName, stylistId, userId} = req.body;

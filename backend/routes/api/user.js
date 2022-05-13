@@ -40,6 +40,23 @@ router.post('/stylist', asyncHandler(async (req, res) => {
   const stylist = await Stylist.signup(req.body)
   res.json({user : stylist.dataValues})
 
-}))
+}));
+
+router.post('/stylist/edit', asyncHandler(async (req, res) => {
+  const { id, firstName, lastName, email, bio, city, state } = req.body;
+  console.log(id, "----------")
+  const newStylist = await Stylist.findByPk(id);
+
+  await newStylist.update({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    bio: bio,
+    city: city,
+    state: state
+  })
+
+  return res.json({newStylist});
+}));
 
 module.exports = router;

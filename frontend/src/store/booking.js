@@ -19,15 +19,27 @@ export const addBooking = (booking) => {
 
 export const getStylistBookings = (stylistId) => async dispatch => {
 
-  console.log("we runnin!!!")
   const response = await csrfFetch(`/api/booking/stylist/${stylistId}`)
-  console.log(response, "here!!!!")
   if(!response.ok){
     throw response;
   }
 
   const styleBookings = await response.json();
   dispatch(setBookings(styleBookings));
+
+};
+
+export const getUserBookings = (userId) => async dispatch => {
+
+  console.log("we runnin!!!")
+  const response = await csrfFetch(`/api/booking/user/${userId}`)
+  console.log(response, "here!!!!")
+  if(!response.ok){
+    throw response;
+  }
+
+  const userBookings = await response.json();
+  dispatch(setBookings(userBookings));
 
 };
 

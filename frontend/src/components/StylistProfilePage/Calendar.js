@@ -15,6 +15,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import Button from '@mui/material/Button';
 
@@ -22,10 +23,11 @@ export default function Calendar() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const stylist = useSelector((state) => state?.search[id]);
+  const stylistUser = useSelector(state => state?.session?.stylist);
   const user = useSelector(state => state?.session.user);
   const [date, setDate] = React.useState(new Date('2022-06-12'));
   const [time, setTime] = React.useState('');
-  console.log(user.firstName, stylist.firstName, "here!!!!")
+
 
   const timeChange = (event) => {
     setTime(event.target.value);
@@ -39,10 +41,20 @@ export default function Calendar() {
   const handleBooking = () => {
     const stylistId = id;
     const stylistName = stylist.firstName + " " + stylist.lastName;
-    const userId = user.id
+    const userId = user.id;
     const userName = user.firstName + " " + user.lastName;
-    dispatch(bookingActions.createBooking({ date, time, userName, stylistName, stylistId, userId}))
-  }
+    dispatch(bookingActions.createBooking({ date, time, userName, stylistName, stylistId, userId}));
+  };
+
+  const calButton = () => {
+    if(user) {
+      return <Button onClick={handleBooking} variant="contained">Book Hairstyling</Button>
+    } else if(stylistUser) {
+      return <Button variant="contained">Edit Availability</Button>
+    } else {
+      return <Button variant="contained">Log In to Book an Appointment</Button>
+    }
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -71,7 +83,7 @@ export default function Calendar() {
             </Select>
           </FormControl>
         </Box>
-        {user ? <Button onClick={handleBooking} variant="contained">Book Hairstyling</Button> : <Button variant="contained">Log In to Book an Appointment</Button>}
+        {calButton()}
       </Stack>
     </LocalizationProvider>
   );

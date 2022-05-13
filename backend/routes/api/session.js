@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../models');
+const { Stylist } = require('../../models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -39,6 +40,30 @@ router.post(
 
     return res.json({
       user,
+    });
+  }),
+);
+
+router.post(
+  '/stylist',
+  validateLogin,
+  asyncHandler(async (req, res, next) => {
+    const { email, password } = req.body;
+    const stylist = await Stylist.login({ email, password });
+    console.log('logged in!')
+
+    if (!stylist) {
+      const err = new Error('Login failed');
+      err.status = 401;
+      err.title = 'Login failed';
+      err.errors = ['The provided credentials were invalid.'];
+      return next(err);
+    }
+
+    await setTokenCookie(res, stylist);
+
+    return res.json({
+      stylist,
     });
   }),
 );

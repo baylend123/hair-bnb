@@ -6,6 +6,7 @@ import StylistSignUp from './components/StylistSignUp'
 import ProfilePage from './components/ProfilePage';
 import SearchListPage from './components/SearchListPage';
 import StylistProfilePage from './components/StylistProfilePage';
+import StylistEditPage from './components/StylistEditPage';
 
 
 import {
@@ -22,6 +23,7 @@ function App() {
       <Route path='/user/:id' element={<ProfilePage />} />
       <Route path='/search/:city/:state' element={<SearchListPage />} />
       <Route path='/stylist/:id' element={<StylistProfilePage />} />
+      <Route path='/stylist/edit' element={<StylistEditPage />} />
     </Routes>
   )
 }

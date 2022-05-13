@@ -19,9 +19,7 @@ export const addBooking = (booking) => {
 
 export const getStylistBookings = (stylistId) => async dispatch => {
 
-  console.log("we runnin!!!")
   const response = await csrfFetch(`/api/booking/stylist/${stylistId}`)
-  console.log(response, "here!!!!")
   if(!response.ok){
     throw response;
   }

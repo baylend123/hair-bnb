@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as sessionActions from "../../store/session"
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -15,18 +16,44 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
+import EditSharpIcon from '@mui/icons-material/EditSharp';
 
 export default function AccountMenu() {
-  const user = useSelector(state => state?.session?.user)
+  const dispatch = useDispatch();
+  const user = useSelector(state => state?.session?.user);
+  const stylist = useSelector(state => state?.session?.stylist);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  let userType;
+
+  if(user) {
+    userType = user;
+  } else {
+    userType = stylist;
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const nav = () => {
+    if(user) {
+      return navigate(`/user/${user.id}`)
+    } else {
+      return navigate(`/stylist/${stylist.id}`)
+    }
+  }
+
+  const logout = () => {
+    dispatch(sessionActions.logout());
+    return navigate('/')
+  }
 
 
   return (
@@ -43,7 +70,7 @@ export default function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
             <MenuIcon />
-            <Avatar sx={{ width: 32, height: 32 }} src={user.profilePhoto} />
+            <Avatar sx={{ width: 32, height: 32 }} src={userType.profilePhoto} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -82,18 +109,15 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={() => navigate('/profile-page')} >
-          <Avatar /> My account
+        <MenuItem onClick={nav} >
+          <Avatar src={userType.profilePhoto} /> My account
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            <EditSharpIcon fontSize="small" />
           </ListItemIcon>
-          Add another account
+          Edit Account
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
@@ -101,7 +125,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

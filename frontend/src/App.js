@@ -19,7 +19,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Splash />} />
       <Route path='/stylist-signup' element={<StylistSignUp />} />
-      <Route path='/profile-page' element={<ProfilePage />} />
+      <Route path='/user/:id' element={<ProfilePage />} />
       <Route path='/search/:city/:state' element={<SearchListPage />} />
       <Route path='/stylist/:id' element={<StylistProfilePage />} />
     </Routes>

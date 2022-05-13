@@ -10,7 +10,16 @@ import "./ProfilePageCss.css"
 
 function ProfileBody() {
   const { id } = useParams();
-  const stylist = useSelector((state) => state?.search[id]);
+  const stylistSearch = useSelector((state) => state?.search[id]);
+  const stylistUser = useSelector((state) => state?.session?.stylist);
+
+  let stylist;
+
+  if(stylistUser?.id == id){
+    stylist = stylistUser;
+  } else {
+    stylist = stylistSearch;
+  };
 
 
   return (

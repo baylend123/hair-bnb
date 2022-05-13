@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import * as sessionActions from '../../store/session';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-
+import Checkbox from '@mui/material/Checkbox';
 
 
 const style = {
@@ -30,19 +32,35 @@ function LoginComponent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [checked, setChecked] = useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const handleCheck = (event) => {
+        setChecked(event.target.checked);
+      };
 
-
-    const login = (e) => {
-        e.preventDefault()
-        setErrors([])
+    const userDispatch = () => {
         return dispatch(sessionActions.login({email, password}))
         .catch(async (res) => {
             const data = await res.json()
             if(data && data.errors) setErrors(data.errors)
         })
+    };
+
+    const stylistDispatch = () => {
+        return dispatch(sessionActions.stylistLogin({email, password}))
+        .catch(async (res) => {
+            const data = await res.json()
+            if(data && data.errors) setErrors(data.errors)
+        })
+    };
+
+    const login = (e) => {
+        e.preventDefault()
+        setErrors([])
+        {checked ? stylistDispatch() : userDispatch()}
     }
 
     return (
@@ -87,6 +105,11 @@ function LoginComponent() {
                             required
                         />
                         <Button sx={{ mt: 2 }} type='submit' variant="contained">Log In</Button>
+                        <Checkbox
+                            checked={checked}
+                            onChange={handleCheck}
+                            inputProps={{ 'aria-label': 'controlled' }}
+                        >Stylist Login</Checkbox>
                     </div>
                 </Box>
             </Modal>

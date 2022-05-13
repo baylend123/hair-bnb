@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function ProfilePhotoCard() {
   const user = useSelector((state) => state?.session?.user);
-
+  const bookings = useSelector(state => Object.values(state?.booking));
 
   return (
     <div className="profile-photo-card-container">
@@ -16,6 +16,19 @@ function ProfilePhotoCard() {
       </div>
       <div>
         {user.firstName} confirmed
+      </div>
+      <div>
+        <div className="booking-label">Hair Appointments:</div>
+        {bookings ? bookings.map(booking => {
+          return (
+            <div>
+              <div>You have an appointment with: {booking.stylistName}</div>
+              <div>On {booking.date}</div>
+              <div>At {booking.time}</div>
+            </div>
+          )
+          })
+        : ""}
       </div>
     </div>
   )

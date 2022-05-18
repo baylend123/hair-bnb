@@ -25,35 +25,55 @@ const style = {
 };
 
 
-function StylistEditPage() {
+function ProfileEditPage() {
   const dispatch = useDispatch();
+  const user = useSelector(state => state?.session?.user);
   const stylist = useSelector(state => state?.session?.stylist);
-  const [firstName, setFirstName] = useState(stylist.firstName);
-  const [lastName, setLastName] = useState(stylist.lastName);
-  const [email, setEmail] = useState(stylist.email);
-  const [bio, setBio] = useState(stylist.bio);
-  const [profilePhoto, setProfilePhoto] = useState(stylist.profilePhoto);
-  const [photos, setPhotos] = useState(stylist.photos);
-  const [address, setAddress] =useState(stylist.address);
-  const [venue, setVenue] =useState(stylist.venue);
-  const [city, setCity] = useState(stylist.city);
-  const [state, setState] = useState(stylist.state);
-  const [password, setPassword] = useState(stylist.hashedPassword);
+  let currentUser;
+  if(user) {
+    currentUser = user;
+  } else {
+    currentUser = stylist;
+  }
+  const [firstName, setFirstName] = useState(currentUser.firstName);
+  const [lastName, setLastName] = useState(currentUser.lastName);
+  const [email, setEmail] = useState(currentUser.email);
+  const [bio, setBio] = useState(currentUser.bio);
+  const [profilePhoto, setProfilePhoto] = useState(currentUser.profilePhoto);
+  const [photos, setPhotos] = useState(currentUser.photos);
+  const [address, setAddress] =useState(currentUser.address);
+  const [venue, setVenue] =useState(currentUser.venue);
+  const [city, setCity] = useState(currentUser.city);
+  const [state, setState] = useState(currentUser.state);
+  const [password, setPassword] = useState(currentUser.hashedPassword);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
 
+
+  console.log(user, "TTTTTTTTTTTT");
+
   const update = async (e) => {
     e.preventDefault()
     setErrors([]);
-    dispatch(sessionActions.editStylist({ id: stylist.id, firstName, lastName, email, bio, city, state}))
+    if(user) {
+      dispatch(sessionActions.editUser({ id: currentUser.id, firstName, lastName, email, bio, city, state}))
     .catch(async (res) => {
       console.log(res)
       const data = await res.json()
       if(data && data.errors) setErrors(data.errors)
     })
-    return navigate(`/stylist/${stylist.id}`)
+    return navigate(`/user/${currentUser.id}`)
+    } else {
+      dispatch(sessionActions.editStylist({ id: stylist.id, firstName, lastName, email, bio, city, state}))
+      .catch(async (res) => {
+        console.log(res)
+        const data = await res.json()
+        if(data && data.errors) setErrors(data.errors)
+      })
+      return navigate(`/stylist/${currentUser.id}`)
+    }
   };
 
   const updateFile = (e) => {
@@ -136,4 +156,4 @@ function StylistEditPage() {
 };
 
 
-export default StylistEditPage;
+export default ProfileEditPage;

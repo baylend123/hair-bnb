@@ -96,17 +96,26 @@ export const stylistSignup = (info) => async (dispatch) => {
 };
 
 export const editStylist = (edits) => async (dispatch) => {
-    console.log(edits, "+++++++++")
     const response = await csrfFetch('/api/user/stylist/edit', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(edits)
     })
     const data = await response.json();
-    console.log(data, "=========")
     dispatch(setStylist(data.newStylist))
 }
 
+export const editUser = (edits) => async (dispatch) => {
+    console.log(edits, "+++++++++")
+    const response = await csrfFetch('/api/user/edit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(edits)
+    })
+    const data = await response.json();
+    console.log(data, "=========")
+    dispatch(setUser(data.newUser))
+}
 
 
 export const logout = () => async (dispatch) => {

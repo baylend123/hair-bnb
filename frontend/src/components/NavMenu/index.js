@@ -113,7 +113,7 @@ export default function AccountMenu() {
           <Avatar src={userType.profilePhoto} /> My account
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => navigate('/stylist/edit')}>
+        <MenuItem onClick={() => navigate('/user/edit')}>
           <ListItemIcon>
             <EditSharpIcon fontSize="small" />
           </ListItemIcon>

@@ -5,8 +5,6 @@ import { useParams } from 'react-router-dom';
 import "./ProfilePageCss.css"
 
 
-
-
 function ProfilePhotoCard() {
   const { id } = useParams();
   const stylist = useSelector((state) => state?.search[id]);

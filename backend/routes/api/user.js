@@ -25,7 +25,6 @@ router.post(
   // validateSignup,
   asyncHandler(async (req, res) => {
     const { firstName, lastName, email, bio, currentHairStyle, password, city, state } = req.body;
-    console.log(req.files.profilePhoto)
     const profilePhoto = await singlePublicFileUpload(req.files.profilePhoto);
     const user = await User.signup({ firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state });
     await setTokenCookie(res, user);
@@ -35,6 +34,23 @@ router.post(
     });
   }),
 );
+
+router.post('/edit', asyncHandler(async (req, res) => {
+  const { id, firstName, lastName, email, bio, city, state } = req.body;
+  console.log(id, "----------")
+  const newUser = await User.findByPk(id);
+
+  await newUser.update({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    bio: bio,
+    city: city,
+    state: state
+  })
+
+  return res.json({newUser});
+}));
 
 router.post('/stylist', asyncHandler(async (req, res) => {
   const stylist = await Stylist.signup(req.body)

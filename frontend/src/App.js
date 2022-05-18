@@ -7,7 +7,6 @@ import ProfilePage from './components/ProfilePage';
 import SearchListPage from './components/SearchListPage';
 import StylistProfilePage from './components/StylistProfilePage';
 import ProfileEditPage from './components/ProfileEditPage';
-import StylistEditPage from './components/StylistEditPage';
 
 
 import {

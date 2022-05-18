@@ -1,16 +1,14 @@
 import React, {useEffect} from "react";
 import { useSelector } from "react-redux";
+import Messages from "./messages";
 
-export default function ConversationComponent({messages}) {
-    
+export default function ConversationComponent({stylistIdArr, setMessageThread}) {
     return (
         <>
-        {messages && Object.keys(messages)?.map(id => {
-            return (
-                <div>
-                    {messages[id].stylistId}
-                </div>
-            )
+        {stylistIdArr && stylistIdArr?.map(id => {
+            return <div
+                onClick={() => setMessageThread(id)}
+            >{id}</div>
         })}
         </>
     )

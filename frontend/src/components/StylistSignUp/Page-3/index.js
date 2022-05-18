@@ -17,7 +17,6 @@ export default function PageThree ({changePage, pageThreeState, setPageThreeStat
         response = await response.json()
         setUpload(true)
         await setPageThreeState((prev) => [...prev, response.profilePhoto])
-        console.log(pageThreeState)
         setUpload((prev) => !prev)
     }
     return(

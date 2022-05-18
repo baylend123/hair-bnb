@@ -69,10 +69,10 @@ function SignupComponent (){
 
     // const singlePublicFileUpload = async (file) => {
     //     const { name, mimetype, path } = await file;
-    //     console.log(file, "==========")
+    //     file, "==========")
     //     // name of the file in your S3 bucket will be the date in ms plus the extension name
     //     const Key = new Date().getTime().toString() + name;
-    //     console.log(Key);
+    //     Key);
     //     const uploadParams = {
     //       Bucket: NAME_OF_BUCKET,
     //       Key,
@@ -91,7 +91,6 @@ function SignupComponent (){
         // await singlePublicFileUpload(profilePhoto);
         return dispatch(sessionActions.signup({firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, confirmPassword, city, state}))
         .catch(async (res) => {
-            console.log(res)
             // const data = await res.json()
             // if(data && data.errors) setErrors(data.errors)
         })
@@ -99,7 +98,6 @@ function SignupComponent (){
 
     const updateFile = (e) => {
       const file = e.target.files[0];
-      console.log(file.name)
       if(file) {
         setProfilePhoto(file);
       }

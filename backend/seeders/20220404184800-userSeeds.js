@@ -13,6 +13,7 @@ module.exports = {
     */
 
      await queryInterface.bulkInsert('Users', [{
+         id:1,
          firstName: 'B',
          lastName: 'Money',
          email: 'bm@email.com',
@@ -24,6 +25,7 @@ module.exports = {
          state: 'California'
        },
        {
+        id:2,
         firstName: 'No',
         lastName: 'Money',
         email: 'nm@email.com',

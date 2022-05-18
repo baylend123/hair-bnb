@@ -35,8 +35,6 @@ router.get('/set-token-cookie', asyncHandler(async (req, res) => {
 router.get('/query-sandbox', asyncHandler(async (req, res) => {
   const tag = await Tag.findByPk(1)
   const user = await User.findByPk(1)
-  console.log(tag)
-  console.log(user)
   res.json({ tag })
 }))
 

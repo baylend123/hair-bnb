@@ -47,7 +47,7 @@ function LoginComponent() {
     const demoLogin = (e) => {
         e.preventDefault()
         setErrors([])
-        return dispatch(sessionActions.login({email : 'bm@email.com', password : 'password'}))
+        return dispatch(sessionActions.login({email : 'nm@email.com', password : 'password'}))
         .catch(async (res) => {
             const data = await res.json()
             if(data && data.errors) setErrors(data.errors)

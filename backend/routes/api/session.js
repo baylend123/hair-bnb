@@ -25,7 +25,6 @@ router.post(
   asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.login({ email, password });
-    console.log('logged in!')
 
     if (!user) {
       const err = new Error('Login failed');

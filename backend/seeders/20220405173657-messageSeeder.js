@@ -1,5 +1,5 @@
 'use strict';
-
+const { faker } = require('@faker-js/faker');
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -21,7 +21,14 @@ module.exports = {
       message: 'Yo! I wanna clean cut, please guy.',
       stylistId: 2,
       userId: 2
-    }
+    },
+    ...new Array(100).fill('').map(el => {
+      return {
+        message : faker.lorem.paragraph(),
+        stylistId : 1,
+        userId : 2
+      }
+    })
   ], {});
   },
 

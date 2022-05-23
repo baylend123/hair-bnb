@@ -1,6 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Message } = require('../../models');
+const { User } = require('../../models');
+const { Op } = require("sequelize");
 const { Stylist } = require('../../models')
 const WebSocket = require('ws')
 const router = express.Router();
@@ -16,35 +18,49 @@ wss.on('connection', function connection(ws) {
   });
 });
 
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/conversations/:id', asyncHandler(async (req, res) => {
   const { id } = req.params
-  const messages = await Message.findAll({
+  let conversationIds = new Set()
+  let messages = await Message.findAll({
+    include : User,
     where: {
-      userId: id
+      recipientId : id ,
     },
-    order:["createdAt"]
-  });
-  let response = {}
-   await Object.keys(messages).forEach(async el => {
-    let stylistId = messages[el].dataValues.stylistId
-    let stylist = await Stylist.findByPk(stylistId)
-    if(response[stylistId]){
-      response[stylistId].messages.push(messages[el].dataValues.message)
-    }else{
-      response[stylistId]= {}
-      response[stylistId].stylist = stylist
-      response[stylistId].messages = [messages[el].dataValues.message]
+  })
+  messages = messages.filter(el => {
+    let sender = el.dataValues.senderId
+    let recipient = el.dataValues.recipientId
+    let conversationArr = [sender, recipient]
+    if(!conversationIds.has(conversationArr.join(''))){
+      console.log(el.dataValues.senderId, el.dataValues.recipientId)
+      conversationIds.add(conversationArr.join(''))
+      return el
     }
   })
-  console.log(response)
-  return res.json(response)
+  console.log('here')
+  return res.json(messages)
 }))
-router.post('/:id', asyncHandler(async (req, res) => {
-  const { id } = req.params
-  let {message, userId} = req.body
+
+router.get('/:recipientId/:senderId', asyncHandler(async (req, res) => {
+  const {recipientId, senderId} = req.params
+
+  const messages = await Message.findAll({
+    where: {
+      [Op.or]: [
+        { senderId: senderId },
+        { senderId: recipientId }
+      ]
+    }
+  })
+  // console.log(messages)
+  res.json(messages)
+}))
+router.post('', asyncHandler(async (req, res) => {
+  // const { id } = req.params
+  let {recipientId, senderId, message} = req.body
   const newMessage = await Message.create({
-    stylistId : id,
-    userId : userId,
+    recipientId : recipientId,
+    senderId : senderId,
     message : message
   })
   return res.json(newMessage)

@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       currentHairStyle: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       profilePhoto: {
@@ -43,6 +43,22 @@ module.exports = {
       state: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      address: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      venue: {
+        allowNull: true,
+        type: Sequelize.BOOLEAN
+      },
+      isStylist: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
+      photos: {
+        allowNull: true,
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

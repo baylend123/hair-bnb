@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import searchReducer from './search';
 import bookingReducer from './booking';
 import messageReducer from './messages';
+import conversationsReducer from './conversations';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     search: searchReducer,
     booking: bookingReducer,
-    messages : messageReducer
+    messages : messageReducer,
+    conversations : conversationsReducer
 })
 
 let enhancer

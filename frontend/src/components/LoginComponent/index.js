@@ -114,9 +114,11 @@ function LoginComponent() {
                             required
                         />
                         <Button sx={{ mt: 2 }} type='submit' variant="contained">Log In</Button>
+
                         <Button
                         onClick={demoLogin}
                         sx={{ mt: 2 }} variant="contained">Demo user</Button>
+
                         <Checkbox
                             checked={checked}
                             onChange={handleCheck}

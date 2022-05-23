@@ -1,6 +1,7 @@
 import './App.css';
-import {useState} from 'react'
-import { csrfFetch } from './store/csrf';
+import { useEffect, useState} from 'react'
+import { useDispatch } from 'react-redux';
+import { restoreUser } from './store/session';
 import Splash from './components/SplashComponent';
 import StylistSignUp from './components/StylistSignUp'
 import ProfilePage from './components/ProfilePage';
@@ -10,6 +11,7 @@ import InboxComponent from './components/InboxComponent';
 import ProfileEditPage from './components/ProfileEditPage';
 
 
+
 import {
   Routes,
   Route,
@@ -17,14 +19,19 @@ import {
 
 
 function App() {
+  const dispatch = useDispatch()
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    dispatch(restoreUser()).then(() => setIsLoaded(true));
+  }, [dispatch]);
   return (
     <Routes>
-      <Route path='/' element={<Splash />} />
-      <Route path='/stylist-signup' element={<StylistSignUp />} />
-      <Route path='/user/:id' element={<ProfilePage />} />
-      <Route path='/search/:city/:state' element={<SearchListPage />} />
-      <Route path='/stylist/:id' element={<StylistProfilePage />} />
-      <Route path='/inbox' element={<InboxComponent />} />
+      <Route path='/' element={isLoaded && <Splash />} />
+      <Route path='/stylist-signup' element={isLoaded && <StylistSignUp />} />
+      <Route path='/profile-page' element={isLoaded && <ProfilePage />} />
+      <Route path='/search/:city/:state' element={isLoaded && <SearchListPage />} />
+      <Route path='/stylist/:id' element={isLoaded && <StylistProfilePage />} />
+      <Route path='/inbox' element={isLoaded && <InboxComponent />} />
       <Route path='/user/edit' element={<ProfileEditPage />} />
     </Routes>
   )

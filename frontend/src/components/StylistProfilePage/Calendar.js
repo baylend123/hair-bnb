@@ -58,6 +58,10 @@ export default function Calendar() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         // openTo="year"
@@ -83,12 +87,21 @@ export default function Calendar() {
         />
         <DateTimePicker
           label="Date&Time picker"
+<<<<<<< HEAD
           // value={value}
           />
+=======
+          value={value}
+
+>>>>>>> main
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
           // openTo="year"
           value={date}
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />

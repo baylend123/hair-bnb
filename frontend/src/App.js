@@ -7,9 +7,7 @@ import StylistSignUp from './components/StylistSignUp'
 import ProfilePage from './components/ProfilePage';
 import SearchListPage from './components/SearchListPage';
 import StylistProfilePage from './components/StylistProfilePage';
-
 import InboxComponent from './components/InboxComponent';
-
 import ProfileEditPage from './components/ProfileEditPage';
 
 

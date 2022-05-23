@@ -124,7 +124,6 @@ function LoginComponent() {
                             onChange={handleCheck}
                             inputProps={{ 'aria-label': 'controlled' }}
                         >Stylist Login</Checkbox>
-
                     </div>
                 </Box>
             </Modal>

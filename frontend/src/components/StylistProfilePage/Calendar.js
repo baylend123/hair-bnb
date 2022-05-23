@@ -28,7 +28,6 @@ export default function Calendar() {
   const [date, setDate] = React.useState(new Date('2022-06-12'));
   const [time, setTime] = React.useState('');
 
-
   const timeChange = (event) => {
     setTime(event.target.value);
   };
@@ -59,39 +58,50 @@ export default function Calendar() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         // openTo="year"
-        value={value}
+        // value={value}
         onChange={(newValue) => {
-          setValue(newValue);
+          // setValue(newValue);
         }}
         renderInput={(params) => <TextField {...params} />}
       />
         <DesktopDatePicker
           label="Date desktop"
           inputFormat="MM/dd/yyyy"
-          value={value}
+          // value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
 
         <TimePicker
           label="Time"
-          value={value}
+          // value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
         <DateTimePicker
           label="Date&Time picker"
+<<<<<<< HEAD
+          // value={value}
+          />
+=======
           value={value}
 
+>>>>>>> main
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
           // openTo="year"
           value={date}
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />

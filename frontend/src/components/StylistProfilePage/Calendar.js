@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import * as bookingActions from "../../store/booking";
@@ -25,6 +26,7 @@ export default function Calendar() {
   const stylist = useSelector((state) => state?.search[id]);
   const stylistUser = useSelector(state => state?.session?.stylist);
   const user = useSelector(state => state?.session.user);
+  const [value, setValue] = useState()
   const [date, setDate] = React.useState(new Date('2022-06-12'));
   const [time, setTime] = React.useState('');
 
@@ -58,10 +60,6 @@ export default function Calendar() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
-<<<<<<< HEAD
-=======
-
->>>>>>> main
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         // openTo="year"
@@ -87,21 +85,12 @@ export default function Calendar() {
         />
         <DateTimePicker
           label="Date&Time picker"
-<<<<<<< HEAD
-          // value={value}
-          />
-=======
           value={value}
-
->>>>>>> main
+        />
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
           // openTo="year"
           value={date}
-<<<<<<< HEAD
-=======
-
->>>>>>> main
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />

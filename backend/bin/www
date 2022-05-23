@@ -4,13 +4,12 @@ const app = require('../app');
 const db = require('../models');
 
 // Check the database connection before starting the app
-// console.log("Am I stuck here?")
-// console.log(port)
+// "Am I stuck here?")
+// port)
 
 db.sequelize
 .authenticate()
 .then((res) => {
-    console.log(res)
     console.log('Database connection success! Sequelize is ready to use...');
 
     // Start listening for connections
@@ -20,4 +19,3 @@ db.sequelize
     ('Database connection failure.');
     console.error(err);
   });
-console.log("Hey")

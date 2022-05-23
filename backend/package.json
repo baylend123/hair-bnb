@@ -34,6 +34,10 @@
     "per-env": "^1.0.2",
     "pg": "^8.7.3",
     "sequelize": "^6.18.0",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "ws": "^8.6.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.3.1"
   }
 }

@@ -59,10 +59,39 @@ export default function Calendar() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
+
+      <StaticDatePicker
+        displayStaticWrapperAs="desktop"
+        // openTo="year"
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
+        <DesktopDatePicker
+          label="Date desktop"
+          inputFormat="MM/dd/yyyy"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+
+        <TimePicker
+          label="Time"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+        <DateTimePicker
+          label="Date&Time picker"
+          value={value}
+
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
           // openTo="year"
           value={date}
+
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />

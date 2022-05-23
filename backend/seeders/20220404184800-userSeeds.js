@@ -11,28 +11,40 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+  
 
      await queryInterface.bulkInsert('Users', [{
-         firstName: 'B',
-         lastName: 'Money',
-         email: 'bm@email.com',
+         id:1,
+         firstName: 'Baylen',
+         lastName: 'Normal User',
+         email: 'b@email.com',
          bio: 'has money and hair',
          currentHairStyle: 'sick ass combover',
-         profilePhoto: 'link',
+         profilePhoto: 'https://hair-bnb.s3.us-west-1.amazonaws.com/Screen+Shot+2022-04-27+at+5.52.53+PM.png',
          hashedPassword: bcrypt.hashSync('password'),
          city: 'Dallas',
-         state: 'California'
+         state: 'California',
+         address: null,
+         venue : null,
+         photos : null,
+         isStylist : false
        },
        {
-        firstName: 'No',
-        lastName: 'Money',
-        email: 'nm@email.com',
+        id:2,
+        firstName: 'Baylen',
+        lastName: 'Stylist User',
+        email: 'bs@email.com',
         bio: 'has no money and no hair',
         currentHairStyle: 'sick ass head',
-        profilePhoto: 'link',
+        profilePhoto: 'https://hair-bnb.s3.us-west-1.amazonaws.com/Nishi+Nelson+rev++(2).jpg',
         hashedPassword: bcrypt.hashSync('password'),
         city: 'San Diego',
-        state: 'Texas'
+        state: 'Texas',
+        address : '123 road st.',
+        venue : true,
+        photos : JSON.stringify(['https://hair-bnb.s3.us-west-1.amazonaws.com/1650393341772.jpeg','https://hair-bnb.s3.us-west-1.amazonaws.com/1650394127005.jpeg', 'https://hair-bnb.s3.us-west-1.amazonaws.com/1650476641625.jpg' ]),
+        isStylist : true
+        
       }], {});
   },
 
@@ -46,8 +58,9 @@ module.exports = {
 
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      email: { [Op.in]: ['bm@email.com', 'nm@email.com'] }
+      email: { [Op.in]: ['b@email.com', 'bs@email.com'] }
     }, {});
 
-  }
+   }
+  
 };

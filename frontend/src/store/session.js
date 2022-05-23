@@ -28,7 +28,7 @@ const removeUser = () => {
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session')
     const data = await response.json()
-
+    console.log(data)
     dispatch(setUser(data.user))
 
     return response
@@ -65,7 +65,6 @@ export const stylistLogin = (stylist) => async dispatch => {
 export const signup = (user) => async (dispatch) => {
     const {firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state } = user;
     const formData = new FormData();
-    console.log(user)
     formData.append('firstName', firstName);
     formData.append('lastName', lastName);
     formData.append('email', email);
@@ -75,6 +74,7 @@ export const signup = (user) => async (dispatch) => {
     formData.append('password', password);
     formData.append('city', city);
     formData.append('state', state);
+    formData.append('isStylist', false)
     const response = await csrfFetch('/api/user', {
       method: 'POST',
       headers: {'Content-Type': 'multipart/form-data'},

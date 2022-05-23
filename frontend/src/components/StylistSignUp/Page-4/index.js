@@ -9,7 +9,6 @@ export default function PageFour({
     setPageFourState,
     handleSubmit
 }) {
-    console.log(pageFourState)
     const navigate = useNavigate()
     return (
         <div className="stylist-sign-up-container">
@@ -22,7 +21,6 @@ export default function PageFour({
                     <label className="ssup-label" htmlFor="fist-name">City</label>
                     <input
                         onChange={(e) => {
-                            console.log(pageFourState)
                             pageFourState.city = e.target.value
                             setPageFourState(pageFourState)
                         }

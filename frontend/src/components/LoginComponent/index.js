@@ -62,6 +62,15 @@ function LoginComponent() {
         setErrors([])
         {checked ? stylistDispatch() : userDispatch()}
     }
+    const demoLogin = (e) => {
+        e.preventDefault()
+        setErrors([])
+        return dispatch(sessionActions.login({email : 'nm@email.com', password : 'password'}))
+        .catch(async (res) => {
+            const data = await res.json()
+            if(data && data.errors) setErrors(data.errors)
+        })
+    }
 
     return (
 
@@ -105,11 +114,17 @@ function LoginComponent() {
                             required
                         />
                         <Button sx={{ mt: 2 }} type='submit' variant="contained">Log In</Button>
+
+                        <Button
+                        onClick={demoLogin}
+                        sx={{ mt: 2 }} variant="contained">Demo user</Button>
+
                         <Checkbox
                             checked={checked}
                             onChange={handleCheck}
                             inputProps={{ 'aria-label': 'controlled' }}
                         >Stylist Login</Checkbox>
+
                     </div>
                 </Box>
             </Modal>

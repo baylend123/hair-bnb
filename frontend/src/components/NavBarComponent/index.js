@@ -12,6 +12,7 @@ import './NavBar.css';
 
 export function NavBar() {
     const user = useSelector(state => state?.session?.user);
+    const stylist = useSelector(state => state?.session?.stylist);
     const navigate = useNavigate();
 
     return (
@@ -25,7 +26,7 @@ export function NavBar() {
                         >Inbox</div>
             </div>
             <div className="nav-bar-right">
-                { user ? (
+                { user || stylist ? (
                     <NavMenu />
                     // <Button
                     //     sx={{color: 'royalblue'}}

@@ -7,3 +7,9 @@ body {
   padding: 15px;
   border: solid 1px black ;
 }
+
+.profile-photo {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}

@@ -4,12 +4,18 @@ import { NavLink } from "react-router-dom";
 import ProfilePhotoCard from "./ProfilePhotoCard";
 import ProfileBody from "./ProfileBody";
 import { NavBar } from "../NavBarComponent";
+import * as bookingActions from "../../store/booking";
 
 import "./ProfilePageCss.css"
 
 
 function ProfilePage() {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state?.session?.user)
 
+  useEffect(()=>{
+    dispatch(bookingActions.getUserBookings(user.id))
+  }, []);
 
   return (
     <div className="profile-page">

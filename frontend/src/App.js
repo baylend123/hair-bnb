@@ -7,6 +7,8 @@ import ProfilePage from './components/ProfilePage';
 import SearchListPage from './components/SearchListPage';
 import StylistProfilePage from './components/StylistProfilePage';
 import InboxComponent from './components/InboxComponent';
+import ProfileEditPage from './components/ProfileEditPage';
+
 
 import {
   Routes,
@@ -19,10 +21,11 @@ function App() {
     <Routes>
       <Route path='/' element={<Splash />} />
       <Route path='/stylist-signup' element={<StylistSignUp />} />
-      <Route path='/profile-page' element={<ProfilePage />} />
+      <Route path='/user/:id' element={<ProfilePage />} />
       <Route path='/search/:city/:state' element={<SearchListPage />} />
       <Route path='/stylist/:id' element={<StylistProfilePage />} />
       <Route path='/inbox' element={<InboxComponent />} />
+      <Route path='/user/edit' element={<ProfileEditPage />} />
     </Routes>
   )
 }

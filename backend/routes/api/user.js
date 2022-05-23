@@ -36,7 +36,7 @@ router.post(
 );
 
 router.post('/stylist', asyncHandler(async (req, res) => {
-  const stylist = await Stylist.signup(req.body)
+  const stylist = await User.stylistSignup(req.body)
   res.json({user : stylist.dataValues})
 
 }))

@@ -15,21 +15,31 @@ router.get('/stylist/:stylistId', asyncHandler( async (req, res) => {
     res.json(bookings);
 }));
 
-router.get('/:id(\\d+)', asyncHandler( async (req, res) =>{
-    const id = Number(req.params.id);
-    const event = await Event.findOne({
-        where: { id },
-        include: {all: true}
+router.get('/user/:userId', asyncHandler( async (req, res) => {
+    const { userId } = req.params;
+    console.log("We made it here!!!", userId)
+    const bookings = await Booking.findAll({
+        where: {
+            userId,
+        }
     });
-    res.json(event);
-}))
-//may need to revisit this route
-//POST// http://localhost:5000/api/events
-router.post('/', asyncHandler( async (req, res) => {
-    const {name, details, imageUrl, city, state, address, userId, groupId} = req.body;
-    const event = await Event.create({name, details, imageUrl, city, state, address, userId, groupId});
-    return res.json(event);
-}))
+    res.json(bookings);
+}));
+
+// router.get('/:id(\\d+)', asyncHandler( async (req, res) =>{
+//     const id = Number(req.params.id);
+//     const event = await Event.findOne({
+//         where: { id },
+//         include: {all: true}
+//     });
+//     res.json(event);
+// }))
+
+router.post('/new', asyncHandler( async (req, res) => {
+    const {date, time, userName, stylistName, stylistId, userId} = req.body;
+    const booking = await Booking.create({date, time, userName, stylistName, stylistId, userId});
+    return res.json(booking);
+}));
 
 router.get('/', asyncHandler( async (req, res) => {
     // const {name, details, img, city, state, address, userId, groupId} = req.body;

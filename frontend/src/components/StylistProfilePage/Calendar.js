@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
+import * as bookingActions from "../../store/booking";
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,23 +15,51 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import Button from '@mui/material/Button';
 
 export default function Calendar() {
-  const [value, setValue] = React.useState(new Date('2022-06-12T10:30:00'));
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const stylist = useSelector((state) => state?.search[id]);
+  const stylistUser = useSelector(state => state?.session?.stylist);
+  const user = useSelector(state => state?.session.user);
+  const [date, setDate] = React.useState(new Date('2022-06-12'));
   const [time, setTime] = React.useState('');
+
 
   const timeChange = (event) => {
     setTime(event.target.value);
   };
 
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const handleChange = (newDate) => {
+    setDate(newDate.toDateString());
+    console.log(newDate.toDateString(), user.id, time, id)
+  };
+
+  const handleBooking = () => {
+    const stylistId = id;
+    const stylistName = stylist.firstName + " " + stylist.lastName;
+    const userId = user.id;
+    const userName = user.firstName + " " + user.lastName;
+    dispatch(bookingActions.createBooking({ date, time, userName, stylistName, stylistId, userId}));
+  };
+
+  const calButton = () => {
+    if(user) {
+      return <Button onClick={handleBooking} variant="contained">Book Hairstyling</Button>
+    } else if(stylistUser) {
+      return <Button variant="contained">Edit Availability</Button>
+    } else {
+      return <Button variant="contained">Log In to Book an Appointment</Button>
+    }
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
+
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         // openTo="year"
@@ -55,26 +86,33 @@ export default function Calendar() {
         <DateTimePicker
           label="Date&Time picker"
           value={value}
+
+        <StaticDatePicker
+          displayStaticWrapperAs="desktop"
+          // openTo="year"
+          value={date}
+
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
         <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Time</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={time}
-                label="Time"
-                onChange={timeChange}
-              >
-                <MenuItem value={10.00}>10:00 AM</MenuItem>
-                <MenuItem value={11.00}>11:00 AM</MenuItem>
-                <MenuItem value={12.30}>12:30 PM</MenuItem>
-                <MenuItem value={13.30}>1:30 PM</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Time</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={time}
+              label="Time"
+              onChange={timeChange}
+            >
+              <MenuItem value={"10:00 AM"}>10:00 AM</MenuItem>
+              <MenuItem value={"11:00 AM"}>11:00 AM</MenuItem>
+              <MenuItem value={"12:30 PM"}>12:30 PM</MenuItem>
+              <MenuItem value={"1:30 PM"}>1:30 PM</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        {calButton()}
       </Stack>
     </LocalizationProvider>
   );

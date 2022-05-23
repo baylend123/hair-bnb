@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 
-
+import "./ProfilePageCss.css"
 
 
 function ProfilePhotoCard() {
@@ -13,11 +13,11 @@ function ProfilePhotoCard() {
   return (
     <div className="profile-photo-card-container">
       <div className="photo-container">
-        <img className="profile-photo" src={stylist.profilePhoto} alt="profile" />
+        <img className="profile-photo" src={stylist?.profilePhoto} alt="profile" />
         <button>edit photo</button>
       </div>
       <div>
-        {stylist.firstName} confirmed
+        {stylist?.firstName} confirmed
       </div>
     </div>
   )

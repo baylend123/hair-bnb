@@ -1,14 +1,23 @@
 import { csrfFetch } from "./csrf";
 
-const SET_USER = 'session/setUser'
-const REMOVE_USER = 'session/removeUser'
+const SET_USER = 'session/setUser';
+const SET_STYLIST = 'session/setStylist'
+const REMOVE_USER = 'session/removeUser';
 
 const setUser = (user) => {
     return {
         type: SET_USER,
-        payload : user
+        payload: user
     }
 }
+
+const setStylist = (stylist) => {
+    return {
+        type: SET_STYLIST,
+        payload: stylist
+    }
+}
+
 const removeUser = () => {
     return {
         type: REMOVE_USER
@@ -28,8 +37,8 @@ export const restoreUser = () => async dispatch => {
 export const login = (user) => async dispatch => {
     const {email, password} = user
     const response  = await csrfFetch('/api/session', {
-        method : 'POST',
-        body : JSON.stringify({
+        method: 'POST',
+        body: JSON.stringify({
             email,
             password
         })
@@ -37,7 +46,21 @@ export const login = (user) => async dispatch => {
     const data = await response.json()
     dispatch(setUser(data.user))
     return response
-}
+};
+
+export const stylistLogin = (stylist) => async dispatch => {
+    const {email, password} = stylist;
+    const response  = await csrfFetch('/api/session/stylist', {
+        method: 'POST',
+        body: JSON.stringify({
+            email,
+            password
+        })
+    })
+    const data = await response.json()
+    dispatch(setStylist(data.stylist))
+    return response
+};
 
 export const signup = (user) => async (dispatch) => {
     const {firstName, lastName, email, bio, currentHairStyle, profilePhoto, password, city, state } = user;
@@ -54,7 +77,7 @@ export const signup = (user) => async (dispatch) => {
     formData.append('isStylist', false)
     const response = await csrfFetch('/api/user', {
       method: 'POST',
-      headers : {'Content-Type' : 'multipart/form-data'},
+      headers: {'Content-Type': 'multipart/form-data'},
       body: formData,
     });
     const data = await response.json();
@@ -64,13 +87,36 @@ export const signup = (user) => async (dispatch) => {
 
 export const stylistSignup = (info) => async (dispatch) => {
     const response = await csrfFetch('/api/user/stylist', {
-        method : 'POST',
-        headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify(info)
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(info)
     })
     const data = await response.json()
-    dispatch(setUser(data.user))
+    dispatch(setStylist(data.stylist))
+};
+
+export const editStylist = (edits) => async (dispatch) => {
+    const response = await csrfFetch('/api/user/stylist/edit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(edits)
+    })
+    const data = await response.json();
+    dispatch(setStylist(data.newStylist))
 }
+
+export const editUser = (edits) => async (dispatch) => {
+    console.log(edits, "+++++++++")
+    const response = await csrfFetch('/api/user/edit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(edits)
+    })
+    const data = await response.json();
+    console.log(data, "=========")
+    dispatch(setUser(data.newUser))
+}
+
 
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch('/api/session', {
@@ -80,7 +126,7 @@ export const logout = () => async (dispatch) => {
     return response;
 };
 
-const initialState = { user: null };
+const initialState = { user: null, stylist: null };
 
 const sessionReducer = (state = initialState, action) => {
     let newState;
@@ -90,9 +136,14 @@ const sessionReducer = (state = initialState, action) => {
         // newState = {...state};
         newState.user = action.payload;
         return newState;
+      case SET_STYLIST:
+        newState = Object.assign({}, state);
+        newState.stylist = action.payload;
+        return newState;
       case REMOVE_USER:
         newState = Object.assign({}, state);
         newState.user = null;
+        newState.stylist = null;
         return newState;
       default:
         return state;

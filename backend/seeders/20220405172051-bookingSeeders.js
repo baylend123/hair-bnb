@@ -14,7 +14,9 @@ module.exports = {
 
      await queryInterface.bulkInsert('Bookings', [{
         date: "2022-06-12",
-        time: 10.00,
+        time: "10:00 AM",
+        userName: "no money",
+        stylistName: "b money",
         stylistId: 1,
         userId: 2
      }], {});

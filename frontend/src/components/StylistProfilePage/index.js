@@ -7,17 +7,17 @@ import { NavBar } from "../NavBarComponent";
 import * as bookingActions from "../../store/booking"
 
 import "./ProfilePageCss.css"
+import BookingList from "./BookingList";
 
 
 
 function StylistProfilePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const bookings = useSelector(state => state?.booking[id])
 
   useEffect(()=>{
     dispatch(bookingActions.getStylistBookings(id))
-  }, [])
+  }, []);
 
   return (
     <div className="profile-page">
@@ -29,8 +29,8 @@ function StylistProfilePage() {
           <ProfilePhotoCard />
         </div>
         <div className="profile-about">
-          {bookings ? bookings.date : ""}
-          <ProfileBody />
+          <BookingList />
+          <ProfileBody id={id} />
         </div>
       </div>
     </div>

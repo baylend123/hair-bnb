@@ -7,7 +7,12 @@ import StylistSignUp from './components/StylistSignUp'
 import ProfilePage from './components/ProfilePage';
 import SearchListPage from './components/SearchListPage';
 import StylistProfilePage from './components/StylistProfilePage';
+
 import InboxComponent from './components/InboxComponent';
+
+import ProfileEditPage from './components/ProfileEditPage';
+
+
 
 import {
   Routes,
@@ -29,6 +34,7 @@ function App() {
       <Route path='/search/:city/:state' element={isLoaded && <SearchListPage />} />
       <Route path='/stylist/:id' element={isLoaded && <StylistProfilePage />} />
       <Route path='/inbox' element={isLoaded && <InboxComponent />} />
+      <Route path='/user/edit' element={<ProfileEditPage />} />
     </Routes>
   )
 }
